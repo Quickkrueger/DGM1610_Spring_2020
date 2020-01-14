@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Variables : MonoBehaviour
+public class Rabbit : MonoBehaviour
 {
     // Rabbit data
     string rabbitName;
