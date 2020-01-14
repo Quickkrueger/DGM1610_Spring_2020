@@ -18,7 +18,7 @@ public class Rabbit : MonoBehaviour
         maxHealth = 10;
         currentHealth = maxHealth;
         currentHunger = maxHunger;
-        coloration = new Color(.1f, .1f, .1f);
+        coloration = Color.black;
         GetComponent<Renderer>().material.color = coloration;
     }
 
