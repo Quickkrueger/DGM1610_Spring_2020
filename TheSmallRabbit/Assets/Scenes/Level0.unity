@@ -658,7 +658,7 @@ MonoBehaviour:
   rabbitName: Peter
   maxHealth: 10
   maxHunger: 20
-  coloration: {r: 0, g: 0, b: 0, a: 0}
+  coloration: {r: 0.24528301, g: 0.168639, b: 0.13536845, a: 0}
 --- !u!54 &1239350866
 Rigidbody:
   m_ObjectHideFlags: 0
