@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5581151277510766133}
   - component: {fileID: 5581151277510766134}
   - component: {fileID: 5581151277510766153}
+  - component: {fileID: 6475693169931280480}
   m_Layer: 0
   m_Name: Hawk
   m_TagString: Untagged
@@ -89,7 +90,7 @@ BoxCollider:
   m_GameObject: {fileID: 5581151277510766135}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -121,5 +122,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbb6cb1324299f49aad56155fbd4d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
   coloration: {r: 0.685, g: 0.44333398, b: 0.31647, a: 0}
+--- !u!135 &6475693169931280480
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5581151277510766135}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}

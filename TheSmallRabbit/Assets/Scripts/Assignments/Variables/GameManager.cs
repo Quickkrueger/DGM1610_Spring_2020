@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     void Start()
     {
-        
+        instance = GetComponent<GameManager>();
     }
 
     // Update is called once per frame

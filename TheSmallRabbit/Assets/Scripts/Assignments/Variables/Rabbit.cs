@@ -32,7 +32,7 @@ public class Rabbit : MonoBehaviour
             {
                 LeaveBurrow();
             }
-            else
+            else if(currentBurrow != null)
             {
                 Burrow();
             }
@@ -62,7 +62,6 @@ public class Rabbit : MonoBehaviour
         currentHealth = maxHealth;
         currentHunger = maxHunger;
         GetComponent<Renderer>().material.color = coloration;
-        Debug.Log("How much health we got? " + currentHealth);
     }
 
     public void LeaveBurrow()
@@ -81,6 +80,15 @@ public class Rabbit : MonoBehaviour
                     currentBurrow = collision.gameObject;
             }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Burrow")
+        {
+            currentBurrow = null;
+         }
+    }
+
     private void Burrow()
     {
         if (currentBurrow.GetComponent<Burrow>().AllowOccupant(gameObject.GetComponent<Rabbit>()))
