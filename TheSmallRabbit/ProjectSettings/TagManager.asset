@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Burrow
   - Hawk
+  - FlightPath
   layers:
   - Default
   - TransparentFX

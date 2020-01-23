@@ -11,29 +11,31 @@ public class Hawk : MonoBehaviour
     private bool inPursuit = false;
     private GameObject prey;
     private Vector3 destination;
+    public GameObject flightPath;
+    int currentFlightPoint = 0;
     // Start is called before the first frame update
     void Start()
     {
         attackDamage = 5;
         GetComponent<Renderer>().material.color = coloration;
+        destination = flightPath.transform.GetChild(currentFlightPoint).position;
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Rabbit")
+        if(other.tag == "FlightPath")
         {
-            inPursuit = true;
-            prey = other.gameObject;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Rabbit")
-        {
-            inPursuit = false;
-            prey = null;
+            if(currentFlightPoint + 1 < flightPath.transform.childCount)
+            {
+                currentFlightPoint++;
+                destination = flightPath.transform.GetChild(currentFlightPoint).position;
+            }
+            else
+            {
+                currentFlightPoint = 0;
+                destination = flightPath.transform.GetChild(currentFlightPoint).position;
+            }
         }
     }
 
@@ -53,12 +55,11 @@ public class Hawk : MonoBehaviour
 
     private void MaintainFlightPath()
     {
-        float distance = Vector3.Distance(flightPathCenter.transform.position, new Vector3(transform.position.x, flightPathCenter.transform.position.y, transform.position.z));
-        float distanceX = flightPathCenter.transform.position.x - transform.position.x;
-        float distanceZ = flightPathCenter.transform.position.z - transform.position.z;
+        float distanceX = destination.x - transform.position.x;
+        float distanceZ = destination.z - transform.position.z;
+        float distance = Vector3.Distance(destination, transform.position);
 
-        destination = new Vector3(flightPathCenter.transform.position.x + distance * Mathf.Cos(Mathf.Acos(distanceX/ distance) + 0.0314f * Time.deltaTime) ,transform.position.y, flightPathCenter.transform.position.z + distance * Mathf.Sin(Mathf.Asin(distanceX / distance) + 00.314f * Time.deltaTime));
+        transform.position = new Vector3(transform.position.x + (distanceX / distance) * Time.deltaTime * 5, transform.position.y, transform.position.z + (distanceZ / distance) * Time.deltaTime * 5);
 
-        transform.position = destination;
     }
 }

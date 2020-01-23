@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = GetComponent<GameManager>();
-        scoreText.text = score.ToString();
+        //scoreText.text = score.ToString();
     }
 
     // Update is called once per frame
