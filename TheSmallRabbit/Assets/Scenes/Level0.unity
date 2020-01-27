@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 1239350866}
   m_Layer: 0
   m_Name: Rabbit
-  m_TagString: Player
+  m_TagString: Rabbit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1531,7 +1531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1874654149
 Transform:
   m_ObjectHideFlags: 0
@@ -2095,7 +2095,7 @@ PrefabInstance:
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.25
+      value: 10.51
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
@@ -2146,7 +2146,7 @@ PrefabInstance:
         type: 3}
       propertyPath: flightPathCenter
       value: 
-      objectReference: {fileID: 57129845}
+      objectReference: {fileID: 57129850}
     - target: {fileID: 5581151277510766153, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: flightPath
@@ -2155,7 +2155,12 @@ PrefabInstance:
     - target: {fileID: 6475693169931280480, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475693169931280480, guid: 5a5e343389665714589e550f127c6a23,
+        type: 3}
+      propertyPath: m_Radius
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1745024114737756746, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
@@ -2182,6 +2187,5 @@ PrefabInstance:
       propertyPath: m_TagString
       value: FlightPath
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6475693169931280480, guid: 5a5e343389665714589e550f127c6a23, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a5e343389665714589e550f127c6a23, type: 3}
