@@ -125,4 +125,14 @@ public class Rabbit : MonoBehaviour
     {
         return burrowed;
     }
+
+    public int GetHealth()
+    {
+        return currentHealth;
+    }
+
+    public int GetHunger()
+    {
+        return currentHunger;
+    }
 }

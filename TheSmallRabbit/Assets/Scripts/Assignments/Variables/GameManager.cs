@@ -11,16 +11,18 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Slider hungerBar;
     public Slider healthBar;
+    public GameObject player;
     void Start()
     {
         instance = GetComponent<GameManager>();
-        //scoreText.text = score.ToString();
+        scoreText.text = "Score: " + score;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        hungerBar.value = player.GetComponent<Rabbit>().GetHunger();
+        healthBar.value = player.GetComponent<Rabbit>().GetHealth();
     }
 
 }

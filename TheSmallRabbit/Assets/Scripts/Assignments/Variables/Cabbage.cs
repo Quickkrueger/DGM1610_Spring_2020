@@ -7,7 +7,7 @@ public class Cabbage : MonoBehaviour
     public Color color;
     public Color spoiledColor;
     bool spoiled;
-    public int timeUntilSpoiled;
+    public int timeUntilSpoiled = 1000;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +18,10 @@ public class Cabbage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (!spoiled)
-        //{
-        //    spoiled = CheckSpoiled();
-        //}
+        if (!spoiled)
+        {
+            spoiled = CheckSpoiled();
+        }
     }
 
     bool CheckSpoiled()
