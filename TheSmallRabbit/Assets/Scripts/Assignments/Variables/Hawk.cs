@@ -12,7 +12,6 @@ public class Hawk : MonoBehaviour
     private bool hasDestination;
     private GameObject prey;
     private Vector3[] destination;
-    public GameObject flightPath;
     private float flightError = 0.05f;
     int currentFlightPoint = 0;
     // Start is called before the first frame update
@@ -85,9 +84,10 @@ public class Hawk : MonoBehaviour
         float distanceY = destination[currentFlightPoint].y - transform.position.y;
         float distanceZ = destination[currentFlightPoint].z - transform.position.z;
         float distance = Vector3.Distance(destination[currentFlightPoint], transform.position);
-
-        transform.position = new Vector3(transform.position.x + (distanceX / distance) * Time.deltaTime * 5, transform.position.y + (distanceY / distance) * Time.deltaTime * 5, transform.position.z + (distanceZ / distance) * Time.deltaTime * 5);
-        if(transform.position.x >= destination[currentFlightPoint].x - flightError && transform.position.x <= destination[currentFlightPoint].x + flightError && transform.position.z >= destination[currentFlightPoint].z - flightError && transform.position.z <= destination[currentFlightPoint].z + flightError)
+        //transform.position = new Vector3(transform.position.x + (distanceX / distance) * Time.deltaTime * 5, transform.position.y + (distanceY / distance) * Time.deltaTime * 5, transform.position.z + (distanceZ / distance) * Time.deltaTime * 5);
+        //transform.LookAt(destination[currentFlightPoint]);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(destination[currentFlightPoint] - transform.position), Time.deltaTime);
+        if (transform.position.x >= destination[currentFlightPoint].x - flightError && transform.position.x <= destination[currentFlightPoint].x + flightError && transform.position.z >= destination[currentFlightPoint].z - flightError && transform.position.z <= destination[currentFlightPoint].z + flightError)
         {
             hasDestination = false;
         }
@@ -99,8 +99,9 @@ public class Hawk : MonoBehaviour
         float distanceY = prey.transform.position.y + 0.5f - transform.position.y;
         float distanceZ = prey.transform.position.z - transform.position.z;
         float distance = Vector3.Distance(prey.transform.position, transform.position);
-        transform.position = new Vector3(transform.position.x + (distanceX / distance) * Time.deltaTime * 5, transform.position.y + (distanceY / distance) * Time.deltaTime * 5, transform.position.z + (distanceZ / distance) * Time.deltaTime * 5);
-
+        //transform.position = new Vector3(transform.position.x + (distanceX / distance) * Time.deltaTime * 5, transform.position.y + (distanceY / distance) * Time.deltaTime * 5, transform.position.z + (distanceZ / distance) * Time.deltaTime * 5);
+        //transform.LookAt(prey.transform);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(prey.transform.position - transform.position), Time.deltaTime);
         if (!prey.GetComponent<Collider>().enabled)
         {
             inPursuit = false;

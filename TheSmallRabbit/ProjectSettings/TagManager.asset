@@ -8,6 +8,8 @@ TagManager:
   - Hawk
   - FlightPath
   - Rabbit
+  - Ground
+  - Obstacle
   layers:
   - Default
   - TransparentFX

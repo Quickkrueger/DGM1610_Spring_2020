@@ -113,12 +113,12 @@ public class Rabbit : MonoBehaviour
 
     private void TurnLeft()
     {
-        gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 1f, transform.rotation.eulerAngles.z);
+        gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 2f, transform.rotation.eulerAngles.z);
     }
 
     private void TurnRight()
     {
-        gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 1f, transform.rotation.eulerAngles.z);
+        gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 2f, transform.rotation.eulerAngles.z);
     }
 
     public bool IsBurrowed()

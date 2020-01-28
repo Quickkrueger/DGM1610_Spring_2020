@@ -11,20 +11,10 @@ public class Move : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        GetComponent<Rigidbody>().velocity = transform.forward * 5;
     }
-
-    // Detect collision with another object
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
+    
 
 }
