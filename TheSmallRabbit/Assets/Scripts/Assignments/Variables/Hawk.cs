@@ -12,7 +12,8 @@ public class Hawk : MonoBehaviour
     private bool hasDestination;
     private GameObject prey;
     private Vector3[] destination;
-    private float flightError = 0.5f;
+    private float flightError = 1f;
+    private float flightRadius = 12.0f;
     int currentFlightPoint = 0;
     // Start is called before the first frame update
     void Start()
@@ -20,14 +21,14 @@ public class Hawk : MonoBehaviour
         attackDamage = 5;
         GetComponent<Renderer>().material.color = coloration;
         destination = new Vector3[8];
-        destination[0] = new Vector3(flightPathCenter.position.x + 9, transform.position.y, flightPathCenter.position.z);
-        destination[1] = new Vector3(flightPathCenter.position.x + (9 * Mathf.Sqrt(2))/2, transform.position.y, flightPathCenter.position.z + (9 * Mathf.Sqrt(2)) / 2);
-        destination[2] = new Vector3(flightPathCenter.position.x, transform.position.y, flightPathCenter.position.z + 9);
-        destination[3] = new Vector3(flightPathCenter.position.x - (9 * Mathf.Sqrt(2)) / 2, transform.position.y, flightPathCenter.position.z + (9 * Mathf.Sqrt(2)) / 2);
-        destination[4] = new Vector3(flightPathCenter.position.x - 9, transform.position.y, flightPathCenter.position.z);
-        destination[5] = new Vector3(flightPathCenter.position.x - (9 * Mathf.Sqrt(2)) / 2, transform.position.y, flightPathCenter.position.z - (9 * Mathf.Sqrt(2)) / 2);
-        destination[6] = new Vector3(flightPathCenter.position.x, transform.position.y, flightPathCenter.position.z - 9);
-        destination[7] = new Vector3(flightPathCenter.position.x + (9 * Mathf.Sqrt(2)) / 2, transform.position.y, flightPathCenter.position.z - (9 * Mathf.Sqrt(2)) / 2);
+        destination[0] = new Vector3(flightPathCenter.position.x + flightRadius, transform.position.y, flightPathCenter.position.z);
+        destination[1] = new Vector3(flightPathCenter.position.x + (flightRadius * Mathf.Sqrt(2))/2, transform.position.y, flightPathCenter.position.z + (flightRadius * Mathf.Sqrt(2)) / 2);
+        destination[2] = new Vector3(flightPathCenter.position.x, transform.position.y, flightPathCenter.position.z + flightRadius);
+        destination[3] = new Vector3(flightPathCenter.position.x - (flightRadius * Mathf.Sqrt(2)) / 2, transform.position.y, flightPathCenter.position.z + (flightRadius * Mathf.Sqrt(2)) / 2);
+        destination[4] = new Vector3(flightPathCenter.position.x - flightRadius, transform.position.y, flightPathCenter.position.z);
+        destination[5] = new Vector3(flightPathCenter.position.x - (flightRadius * Mathf.Sqrt(2)) / 2, transform.position.y, flightPathCenter.position.z - (flightRadius * Mathf.Sqrt(2)) / 2);
+        destination[6] = new Vector3(flightPathCenter.position.x, transform.position.y, flightPathCenter.position.z - flightRadius);
+        destination[7] = new Vector3(flightPathCenter.position.x + (flightRadius * Mathf.Sqrt(2)) / 2, transform.position.y, flightPathCenter.position.z - (flightRadius * Mathf.Sqrt(2)) / 2);
         hasDestination = true;
 
 

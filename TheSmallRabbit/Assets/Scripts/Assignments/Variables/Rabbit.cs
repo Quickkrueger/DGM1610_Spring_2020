@@ -62,6 +62,7 @@ public class Rabbit : MonoBehaviour
         {
             currentHunger--;
             timeInterval = 5;
+            currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
         }
     }
 
