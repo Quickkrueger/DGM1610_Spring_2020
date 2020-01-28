@@ -13,6 +13,7 @@ public class Rabbit : MonoBehaviour
     private int currentHunger;
     private bool burrowed = false;
     private GameObject currentBurrow;
+    private float timeInterval = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +56,13 @@ public class Rabbit : MonoBehaviour
         {
             TurnRight();
         }
+        timeInterval = timeInterval - Time.deltaTime;
+
+        if(timeInterval <= 0)
+        {
+            currentHunger--;
+            timeInterval = 5;
+        }
     }
 
     void InitializeRabbit()
@@ -87,6 +95,16 @@ public class Rabbit : MonoBehaviour
         {
             currentBurrow = null;
          }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Food")
+        {
+            currentHunger += 5;
+            currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
+            Destroy(collision.gameObject);
+        }
     }
 
     private void Burrow()
