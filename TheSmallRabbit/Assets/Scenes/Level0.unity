@@ -2739,7 +2739,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239350860}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ede55e8485eeb1f4990164b1ad4bbd4d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5181,7 +5181,7 @@ PrefabInstance:
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.16
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
@@ -5191,27 +5191,27 @@ PrefabInstance:
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.5
+      value: 27.3
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.80860615
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.58835036
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
@@ -5226,7 +5226,7 @@ PrefabInstance:
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 107.920006
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}

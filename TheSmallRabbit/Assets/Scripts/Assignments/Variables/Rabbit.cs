@@ -14,6 +14,7 @@ public class Rabbit : MonoBehaviour
     private bool burrowed = false;
     private GameObject currentBurrow;
     private float timeInterval = 5;
+    private bool jumping = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,7 @@ public class Rabbit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !burrowed)
+        if (Input.GetKeyDown(KeyCode.Space) && !burrowed && !jumping)
         {
             Jump();
         }
@@ -77,6 +78,7 @@ public class Rabbit : MonoBehaviour
     {
         burrowed = false;
         currentBurrow.GetComponent<Burrow>().EjectOccupant();
+        gameObject.transform.position = currentBurrow.transform.position + Vector3.up * 0.5f;
         gameObject.GetComponent<BoxCollider>().enabled = true;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         Jump();
@@ -106,6 +108,10 @@ public class Rabbit : MonoBehaviour
             currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
             Destroy(collision.gameObject);
         }
+        else if(collision.gameObject.tag == "Ground" && jumping)
+        {
+            jumping = false;
+        }
     }
 
     private void Burrow()
@@ -122,6 +128,7 @@ public class Rabbit : MonoBehaviour
 
     private void Jump()
     {
+        jumping = true;
         GetComponent<Rigidbody>().AddForceAtPosition(Vector3.up * 200, gameObject.transform.position);
     }
 
