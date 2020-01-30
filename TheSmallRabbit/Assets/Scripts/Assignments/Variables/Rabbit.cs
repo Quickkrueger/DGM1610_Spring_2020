@@ -15,6 +15,7 @@ public class Rabbit : MonoBehaviour
     private GameObject currentBurrow;
     private float timeInterval = 5;
     private bool jumping = false;
+    public int speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,12 @@ public class Rabbit : MonoBehaviour
         {
             Jump();
         }
+
+        if (!burrowed)
+        {
+            Move();
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (burrowed)
@@ -43,20 +50,6 @@ public class Rabbit : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W) && !burrowed)
-        {
-            MoveForward();
-        }
-
-        if ((Input.GetKey(KeyCode.A)))
-        {
-            TurnLeft();
-        }
-
-        if ((Input.GetKey(KeyCode.D)))
-        {
-            TurnRight();
-        }
         timeInterval = timeInterval - Time.deltaTime;
 
         if(timeInterval <= 0)
@@ -79,7 +72,7 @@ public class Rabbit : MonoBehaviour
         burrowed = false;
         currentBurrow.GetComponent<Burrow>().EjectOccupant();
         gameObject.transform.position = currentBurrow.transform.position + Vector3.up * 0.5f;
-        gameObject.GetComponent<BoxCollider>().enabled = true;
+        gameObject.GetComponent<Collider>().enabled = true;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         Jump();
     }
@@ -118,7 +111,7 @@ public class Rabbit : MonoBehaviour
     {
         if (currentBurrow.GetComponent<Burrow>().AllowOccupant(gameObject.GetComponent<Rabbit>()))
         {
-            gameObject.GetComponent<BoxCollider>().enabled = false;
+            gameObject.GetComponent<Collider>().enabled = false;
             gameObject.GetComponent<Rigidbody>().useGravity = false;
             gameObject.transform.position = currentBurrow.transform.position;
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -132,19 +125,17 @@ public class Rabbit : MonoBehaviour
         GetComponent<Rigidbody>().AddForceAtPosition(Vector3.up * 200, gameObject.transform.position);
     }
 
-    private void MoveForward()
+    private void Move()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0) + transform.forward * 5;
+        float horizontalMove = Input.GetAxis("Horizontal");
+        float verticalMove = Input.GetAxis("Vertical");
+
+        GetComponent<Rigidbody>().velocity = new Vector3(horizontalMove * speed * Time.deltaTime, GetComponent<Rigidbody>().velocity.y, verticalMove * speed * Time.deltaTime);
     }
 
-    private void TurnLeft()
+    private void Rotate()
     {
-        gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 2f, transform.rotation.eulerAngles.z);
-    }
 
-    private void TurnRight()
-    {
-        gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 2f, transform.rotation.eulerAngles.z);
     }
 
     public bool IsBurrowed()

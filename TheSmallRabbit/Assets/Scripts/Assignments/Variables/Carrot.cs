@@ -18,10 +18,10 @@ public class Carrot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!spoiled)
-        {
-            spoiled = CheckSpoiled();
-        }
+        //if (!spoiled)
+        //{
+        //    spoiled = CheckSpoiled();
+        //}
     }
 
     bool CheckSpoiled()
