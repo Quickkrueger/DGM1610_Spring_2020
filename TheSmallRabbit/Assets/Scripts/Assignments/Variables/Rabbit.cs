@@ -15,7 +15,10 @@ public class Rabbit : MonoBehaviour
     private GameObject currentBurrow;
     private float timeInterval = 5;
     private bool jumping = false;
-    public int speed;
+    public float moveSpeed;
+    public float rotateSpeed = 2;
+    private float yaw = 0.0f;
+    private float pitch = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,8 @@ public class Rabbit : MonoBehaviour
         {
             Move();
         }
+
+        Rotate();
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -130,12 +135,16 @@ public class Rabbit : MonoBehaviour
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
 
-        GetComponent<Rigidbody>().velocity = new Vector3(horizontalMove * speed * Time.deltaTime, GetComponent<Rigidbody>().velocity.y, verticalMove * speed * Time.deltaTime);
+        GetComponent<Rigidbody>().velocity = transform.forward * verticalMove * moveSpeed * Time.deltaTime + new Vector3(0f, GetComponent<Rigidbody>().velocity.y, 0f) + transform.right * horizontalMove * moveSpeed * Time.deltaTime;
     }
 
     private void Rotate()
     {
+        
+        yaw += rotateSpeed * Input.GetAxis("Mouse X");
+        //pitch -= rotateSpeed * Input.GetAxis("Mouse Y");
 
+        transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
     }
 
     public bool IsBurrowed()
