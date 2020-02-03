@@ -14,6 +14,7 @@ public class Hawk : MonoBehaviour
     private Vector3[] destination;
     private float flightError = 1f;
     private float flightRadius = 12.0f;
+    private bool caughtPrey = false;
     int currentFlightPoint = 0;
     // Start is called before the first frame update
     void Start()
@@ -56,10 +57,18 @@ public class Hawk : MonoBehaviour
         //}
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Rabbit")
+        {
+            GrabPrey();
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!inPursuit)
+        if (!inPursuit || caughtPrey)
         {
             MaintainFlightPath();
         }
@@ -68,6 +77,10 @@ public class Hawk : MonoBehaviour
             MaintainPursuit();
         }
 
+        if (caughtPrey)
+        {
+            prey.transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+        }
     }
 
     private void MaintainFlightPath()
@@ -97,7 +110,7 @@ public class Hawk : MonoBehaviour
     private void MaintainPursuit()
     {
         float distanceX = prey.transform.position.x - transform.position.x;
-        float distanceY = prey.transform.position.y + 0.5f - transform.position.y;
+        float distanceY = prey.transform.position.y + 0.2f - transform.position.y;
         float distanceZ = prey.transform.position.z - transform.position.z;
         float distance = Vector3.Distance(prey.transform.position, transform.position);
         //transform.position = new Vector3(transform.position.x + (distanceX / distance) * Time.deltaTime * 5, transform.position.y + (distanceY / distance) * Time.deltaTime * 5, transform.position.z + (distanceZ / distance) * Time.deltaTime * 5);
@@ -108,5 +121,11 @@ public class Hawk : MonoBehaviour
             inPursuit = false;
             prey = null;
         }
+    }
+
+    private void GrabPrey()
+    {
+        caughtPrey = true;
+        prey.GetComponent<Rabbit>().Caught();
     }
 }

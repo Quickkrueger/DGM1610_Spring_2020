@@ -19,6 +19,7 @@ public class Rabbit : MonoBehaviour
     public float rotateSpeed = 2;
     private float yaw = 0.0f;
     private float pitch = 0.0f;
+    private bool isCaught = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +29,12 @@ public class Rabbit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !burrowed && !jumping)
+        if (Input.GetKeyDown(KeyCode.Space) && !burrowed && !jumping && !isCaught)
         {
             Jump();
         }
 
-        if (!burrowed)
+        if (!burrowed && !isCaught)
         {
             Move();
         }
@@ -160,5 +161,10 @@ public class Rabbit : MonoBehaviour
     public int GetHunger()
     {
         return currentHunger;
+    }
+
+    public void Caught()
+    {
+        isCaught = true;
     }
 }
