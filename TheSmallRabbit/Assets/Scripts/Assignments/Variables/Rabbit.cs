@@ -166,5 +166,8 @@ public class Rabbit : MonoBehaviour
     public void Caught()
     {
         isCaught = true;
+        GetComponent<Rigidbody>().isKinematic = true;
+        transform.position = transform.parent.position;
+        GetComponent<Collider>().enabled = false;
     }
 }

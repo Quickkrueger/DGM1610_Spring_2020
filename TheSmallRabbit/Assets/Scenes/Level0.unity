@@ -2937,7 +2937,7 @@ Transform:
   m_GameObject: {fileID: 1239350860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 989163279}
   m_Father: {fileID: 0}
@@ -5254,22 +5254,22 @@ PrefabInstance:
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.80860615
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.58835036
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
@@ -5284,7 +5284,7 @@ PrefabInstance:
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 107.920006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5581151277510766154, guid: 5a5e343389665714589e550f127c6a23,
         type: 3}
@@ -5296,11 +5296,6 @@ PrefabInstance:
       propertyPath: flightPathCenter
       value: 
       objectReference: {fileID: 57129850}
-    - target: {fileID: 1045830632191823608, guid: 5a5e343389665714589e550f127c6a23,
-        type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a5e343389665714589e550f127c6a23, type: 3}
 --- !u!1001 &8868978480493621396

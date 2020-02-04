@@ -76,11 +76,6 @@ public class Hawk : MonoBehaviour
         {
             MaintainPursuit();
         }
-
-        if (caughtPrey)
-        {
-            prey.transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-        }
     }
 
     private void MaintainFlightPath()
@@ -126,6 +121,7 @@ public class Hawk : MonoBehaviour
     private void GrabPrey()
     {
         caughtPrey = true;
+        prey.transform.parent = transform.GetChild(0);
         prey.GetComponent<Rabbit>().Caught();
     }
 }
