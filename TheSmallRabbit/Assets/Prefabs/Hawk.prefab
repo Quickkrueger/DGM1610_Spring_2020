@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5581151277510766134}
   - component: {fileID: 5581151277510766153}
   - component: {fileID: 6475693169931280480}
-  - component: {fileID: 1045830632191823608}
   m_Layer: 0
   m_Name: Hawk
   m_TagString: Hawk
@@ -124,9 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbb6cb1324299f49aad56155fbd4d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   coloration: {r: 0.685, g: 0.44333398, b: 0.31647, a: 0}
+  speed: 10
   flightPathCenter: {fileID: 0}
+  flightRadius: 24
 --- !u!135 &6475693169931280480
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -140,19 +140,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1045830632191823608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5581151277510766135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b947ae7131ca60d4784a8ac33c787268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
 --- !u!1 &6758181845876374573
 GameObject:
   m_ObjectHideFlags: 0

@@ -4560,11 +4560,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.25000012
       objectReference: {fileID: 0}
-    - target: {fileID: 8351218629960846636, guid: 99c933591287c374eac027c57a35fc00,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8351218629960846639, guid: 99c933591287c374eac027c57a35fc00,
         type: 3}
       propertyPath: m_IsKinematic
@@ -4578,6 +4573,16 @@ PrefabInstance:
     - target: {fileID: 8351218629960846640, guid: 99c933591287c374eac027c57a35fc00,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351218629960846636, guid: 99c933591287c374eac027c57a35fc00,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351218628667595889, guid: 99c933591287c374eac027c57a35fc00,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

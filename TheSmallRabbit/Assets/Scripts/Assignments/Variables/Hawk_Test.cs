@@ -18,12 +18,14 @@ public class Hawk_Test : MonoBehaviour
     private float baseAngleIncrement = (Mathf.PI / 100);
     private float angleIncrement;
     public float flightRadius = 12.0f;
+    private float flightPathY;
     private bool caughtPrey = false;
     int currentFlightPoint = 0;
     // Start is called before the first frame update
     void Start()
     {
         attackDamage = 5;
+        flightPathY = transform.position.y;
         GetComponent<Renderer>().material.color = coloration;
 
 
@@ -35,6 +37,7 @@ public class Hawk_Test : MonoBehaviour
         {
             prey = other.gameObject;
             inPursuit = true;
+            speed = 20;
         }
     }
 
@@ -51,27 +54,35 @@ public class Hawk_Test : MonoBehaviour
     {
         Move();
 
-        //if (!inPursuit || caughtPrey)
-        //{
+        if (!inPursuit || caughtPrey)
+        {
             MaintainFlightPath();
-        //}
-        //else
-        //{
-        //    MaintainPursuit();
-        //}
+        }
+        else
+        {
+            MaintainPursuit();
+        }
     }
 
     private void MaintainFlightPath()
     {
         angleIncrement = (speed / baseSpeed) * baseAngleIncrement;
         flightAngle += angleIncrement;
-        destination = new Vector3(flightPathCenter.position.x + Mathf.Cos(flightAngle) * flightRadius, transform.position.y, flightPathCenter.position.z + Mathf.Sin(flightAngle) * flightRadius);
+        destination = new Vector3(flightPathCenter.position.x + Mathf.Cos(flightAngle) * flightRadius, flightPathY, flightPathCenter.position.z + Mathf.Sin(flightAngle) * flightRadius);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(destination - transform.position), 0.1f);
     }
 
     private void MaintainPursuit()
     {
-
+        //transform.position = new Vector3(transform.position.x + (distanceX / distance) * Time.deltaTime * 5, transform.position.y + (distanceY / distance) * Time.deltaTime * 5, transform.position.z + (distanceZ / distance) * Time.deltaTime * 5);
+        //transform.LookAt(prey.transform);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(prey.transform.position - transform.position + Vector3.up * 0.5f), 0.05f);
+        if (!prey.GetComponent<Collider>().enabled)
+        {
+            inPursuit = false;
+            prey = null;
+            speed = 10;
+        }
     }
 
     private void GrabPrey()
@@ -79,6 +90,7 @@ public class Hawk_Test : MonoBehaviour
         caughtPrey = true;
         prey.transform.parent = transform.GetChild(0);
         prey.GetComponent<Rabbit>().Caught();
+        speed = 10;
     }
 
     private void Move()
