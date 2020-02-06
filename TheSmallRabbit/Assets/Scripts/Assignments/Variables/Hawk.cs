@@ -5,7 +5,6 @@ using UnityEngine;
 public class Hawk : MonoBehaviour
 {
     private int attackDamage;
-    public int speed;
     public Color coloration;
     public Transform flightPathCenter;
     private bool inPursuit = false;
