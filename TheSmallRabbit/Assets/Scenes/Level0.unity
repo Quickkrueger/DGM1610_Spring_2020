@@ -2474,6 +2474,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hungerBar: {fileID: 2069494263}
   healthBar: {fileID: 340924321}
+  maxHealth: 20
+  maxHunger: 20
   player: {fileID: 1239350860}
 --- !u!4 &1100279416
 Transform:
@@ -4882,11 +4884,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carrot
       objectReference: {fileID: 0}
-    - target: {fileID: 2379323303006313220, guid: 3c0988e860f320940b0255d3c546fa35,
-        type: 3}
-      propertyPath: m_TagString
-      value: Food
-      objectReference: {fileID: 0}
     - target: {fileID: 2379323303006313226, guid: 3c0988e860f320940b0255d3c546fa35,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4955,11 +4952,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cabbage
-      objectReference: {fileID: 0}
-    - target: {fileID: 5503889848825554240, guid: ed2429cbacf2df345810651e68302d7b,
-        type: 3}
-      propertyPath: m_TagString
-      value: Food
       objectReference: {fileID: 0}
     - target: {fileID: 5503889848825554246, guid: ed2429cbacf2df345810651e68302d7b,
         type: 3}

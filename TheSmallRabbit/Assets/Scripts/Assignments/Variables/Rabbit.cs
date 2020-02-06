@@ -6,14 +6,10 @@ public class Rabbit : MonoBehaviour
 {
     // Rabbit data
     public string rabbitName;
-    public int maxHealth;
-    public int maxHunger;
+    
     public Color coloration;
-    private int currentHealth;
-    private int currentHunger;
     private bool burrowed = false;
     private GameObject currentBurrow;
-    private float timeInterval = 5;
     private bool jumping = false;
     public float moveSpeed;
     public float rotateSpeed = 2;
@@ -54,22 +50,8 @@ public class Rabbit : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        timeInterval = timeInterval - Time.deltaTime;
-
-        if(timeInterval <= 0)
-        {
-            currentHunger--;
-            timeInterval = 5;
-            currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
-        }
-    }
-
     void InitializeRabbit()
     {
-        currentHealth = maxHealth;
-        currentHunger = maxHunger;
         GetComponent<Renderer>().material.color = coloration;
     }
 
@@ -77,7 +59,7 @@ public class Rabbit : MonoBehaviour
     {
         burrowed = false;
         currentBurrow.GetComponent<Burrow>().EjectOccupant();
-        gameObject.transform.position = currentBurrow.transform.position + Vector3.up * 0.5f;
+        gameObject.transform.position = currentBurrow.transform.position + Vector3.up * 0.3f;
         gameObject.GetComponent<Collider>().enabled = true;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         Jump();
@@ -101,13 +83,7 @@ public class Rabbit : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Food")
-        {
-            currentHunger += 5;
-            currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
-            Destroy(collision.gameObject);
-        }
-        else if(collision.gameObject.tag == "Ground" && jumping)
+        if(collision.gameObject.tag == "Ground" && jumping)
         {
             jumping = false;
         }
@@ -151,16 +127,6 @@ public class Rabbit : MonoBehaviour
     public bool IsBurrowed()
     {
         return burrowed;
-    }
-
-    public int GetHealth()
-    {
-        return currentHealth;
-    }
-
-    public int GetHunger()
-    {
-        return currentHunger;
     }
 
     public void Caught()
