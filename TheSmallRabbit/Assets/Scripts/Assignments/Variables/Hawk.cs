@@ -21,6 +21,7 @@ public class Hawk : MonoBehaviour
     public float flightRadius = 0.0f;
     private float flightPathY;
     private bool caughtPrey = false;
+    private bool exitingDive = false;
     int currentFlightPoint = 0;
     // Start is called before the first frame update
     void Start()
@@ -68,26 +69,25 @@ public class Hawk : MonoBehaviour
     private void MaintainFlightPath()
     {
 
-        baseAngleIncrement = (Mathf.PI / flightRadius);
+        baseAngleIncrement = (Mathf.PI / (flightRadius + baseFlightRadius));
 
         angleIncrement = ((speed / baseSpeed) * baseAngleIncrement);
         
         flightAngle += angleIncrement;
 
         destination = new Vector3(flightPathCenter.position.x + Mathf.Cos(flightAngle) * flightRadius, flightPathY, flightPathCenter.position.z + Mathf.Sin(flightAngle) * flightRadius);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(destination - transform.position), 0.1f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(destination - transform.position), 0.1f);
     }
 
     private void MaintainPursuit()
     {
         //transform.position = new Vector3(transform.position.x + (distanceX / distance) * Time.deltaTime * 5, transform.position.y + (distanceY / distance) * Time.deltaTime * 5, transform.position.z + (distanceZ / distance) * Time.deltaTime * 5);
         //transform.LookAt(prey.transform);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(prey.transform.position - transform.position + Vector3.up * 0.5f), 0.05f);
-        if (!prey.GetComponent<Collider>().enabled)
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(prey.transform.position - transform.position + Vector3.up * 0.25f), (angleIncrement * speed)/baseAngleIncrement);
+        if (!prey.GetComponent<Collider>().enabled && !exitingDive)
         {
-            inPursuit = false;
-            prey = null;
-            speed = 10;
+            exitingDive = true;
+            StartCoroutine(ExitDive());
         }
     }
 
@@ -102,6 +102,15 @@ public class Hawk : MonoBehaviour
     private void Move()
     {
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
+    }
+
+    IEnumerator ExitDive()
+    {
+        yield return new WaitForSeconds(0.5f);
+        inPursuit = false;
+        exitingDive = false;
+        prey = null;
+        speed = 10;
     }
 
 }
