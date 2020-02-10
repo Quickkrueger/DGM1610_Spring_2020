@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8351218628667595890}
   - component: {fileID: 8351218628667595891}
   - component: {fileID: 8351218628667595888}
+  - component: {fileID: 1765719246626956140}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -83,6 +84,23 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8351218628667595889}
   m_Enabled: 1
+--- !u!114 &1765719246626956140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351218628667595889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 9048e5606e4792f4d8f99beab0c140e8, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!1 &8351218629960846641
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,8 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rabbitName: Peter
-  maxHealth: 10
-  maxHunger: 20
   coloration: {r: 0.24528301, g: 0.168639, b: 0.13536845, a: 0}
   moveSpeed: 400
   rotateSpeed: 2
@@ -197,7 +213,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!64 &8351218629960846640
 MeshCollider:
   m_ObjectHideFlags: 0
