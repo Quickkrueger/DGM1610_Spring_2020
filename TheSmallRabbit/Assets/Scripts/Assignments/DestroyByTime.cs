@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class DestroyByTime : MonoBehaviour
 {
-    public int speed = 5;
+
+    public int timeTilDestroy = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,10 +13,8 @@ public class Move : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        Destroy(gameObject, timeTilDestroy);
     }
-    
-
 }
