@@ -97,6 +97,7 @@ public class Hawk : MonoBehaviour
         prey.transform.parent = transform.GetChild(0);
         prey.GetComponent<Rabbit>().Caught();
         speed = 10;
+        GameManager.instance.HarmRabbit(5);
     }
 
     private void Move()

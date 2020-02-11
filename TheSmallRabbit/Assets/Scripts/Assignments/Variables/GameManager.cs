@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = GetComponent<GameManager>();
+
+        hungerBar.maxValue = maxHunger;
+        healthBar.maxValue = maxHealth;
+
         currentHealth = maxHealth;
         currentHunger = maxHunger;
     }
@@ -40,10 +44,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void FeedRabbit()
+    public void FeedRabbit(int satiation)
     {
-        currentHunger += 5;
+        currentHunger += satiation;
         currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
+    }
+
+    public void HarmRabbit(int damage)
+    {
+        currentHealth -= damage;
     }
 
 }

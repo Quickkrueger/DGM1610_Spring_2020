@@ -28,7 +28,7 @@ public class Food : Pickup
     protected override void PickupEffect()
     {
         base.PickupEffect();
-        GameManager.instance.FeedRabbit();
+        GameManager.instance.FeedRabbit(5);
     }
 
     bool CheckSpoiled()
