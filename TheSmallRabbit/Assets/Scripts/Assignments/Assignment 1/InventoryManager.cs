@@ -22,9 +22,9 @@ public class InventoryManager : MonoBehaviour
 
     public ItemScriptableObject ItemToEquip(int inventorySlot)
     {
-        if(nextIndex > inventorySlot)
+        if(nextIndex >= inventorySlot)
         {
-            return items[inventorySlot--];
+            return items[inventorySlot - 1];
         }
 
         return null;

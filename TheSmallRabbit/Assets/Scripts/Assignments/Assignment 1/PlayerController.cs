@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float rotateSpeed = 2;
     public GameObject projectilePrefab;
+    public GameObject bobberPrefab;
     private ItemScriptableObject equippedItem;
     private bool firearmEquipped = false;
+    private bool canFire = true;
 
     // Start is called before the first frame update
     
@@ -24,9 +26,14 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        if (Input.GetAxis("Fire1") > 0.01f)
+        if (Input.GetAxis("Fire1") > 0.01f && canFire && equippedItem != null)
         {
             UseItem();
+        }
+
+        if(Input.GetAxis("Fire1") <= 0.01f)
+        {
+            canFire = true;
         }
 
         if (Input.GetAxis("Use") > 0.01f)
@@ -34,46 +41,7 @@ public class PlayerController : MonoBehaviour
             //Interact();   
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            InventoryManager.instance.ItemToEquip(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            InventoryManager.instance.ItemToEquip(2);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            InventoryManager.instance.ItemToEquip(3);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            InventoryManager.instance.ItemToEquip(4);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            InventoryManager.instance.ItemToEquip(5);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            InventoryManager.instance.ItemToEquip(6);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            InventoryManager.instance.ItemToEquip(7);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            InventoryManager.instance.ItemToEquip(8);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            InventoryManager.instance.ItemToEquip(9);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            InventoryManager.instance.ItemToEquip(0);
-        }
+        EquipItem();
 
     }
 
@@ -98,9 +66,8 @@ public class PlayerController : MonoBehaviour
 
         GetComponent<Rigidbody>().velocity = Vector3.forward * verticalMove * moveSpeed * Time.deltaTime + new Vector3(0f, GetComponent<Rigidbody>().velocity.y, 0f) + Vector3.right * horizontalMove * moveSpeed * Time.deltaTime;
 
-        if (equippedItem != null && equippedItem.ID == "slingshot")
+        if (equippedItem != null && firearmEquipped)
         {
-            firearmEquipped = true;
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = mousePos.y;
             mousePos.y = transform.position.y;
@@ -118,10 +85,80 @@ public class PlayerController : MonoBehaviour
 
     private void UseItem()
     {
+        canFire = false;
+
         if (firearmEquipped)
         {
             Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation);
+            StartCoroutine(ItemCooldown());
         }
+        else if(equippedItem.ID == "fishing_rod")
+        {
+            GameObject bobber = Instantiate(bobberPrefab, transform.position + transform.forward + transform.up, transform.rotation);
+            bobber.GetComponent<Rigidbody>().velocity = (transform.up + transform.forward) * 5;
+            bobber.GetComponent<Bobber>().SetOwner(gameObject);
+        }
+        
+        
+    }
+
+    private void EquipItem()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            equippedItem = InventoryManager.instance.ItemToEquip(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            equippedItem = InventoryManager.instance.ItemToEquip(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            equippedItem = InventoryManager.instance.ItemToEquip(3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            equippedItem = InventoryManager.instance.ItemToEquip(4);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            equippedItem = InventoryManager.instance.ItemToEquip(5);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            equippedItem = InventoryManager.instance.ItemToEquip(6);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            equippedItem = InventoryManager.instance.ItemToEquip(7);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            equippedItem = InventoryManager.instance.ItemToEquip(8);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            equippedItem = InventoryManager.instance.ItemToEquip(9);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            equippedItem = InventoryManager.instance.ItemToEquip(10);
+        }
+
+        if(equippedItem != null && equippedItem.ID == "slingshot")
+        {
+            firearmEquipped = true;
+        }
+        else
+        {
+            firearmEquipped = false;
+        }
+    }
+
+    IEnumerator ItemCooldown()
+    {
+        yield return new WaitForSeconds(equippedItem.cooldownTime);
+        canFire = true;
     }
 
 }

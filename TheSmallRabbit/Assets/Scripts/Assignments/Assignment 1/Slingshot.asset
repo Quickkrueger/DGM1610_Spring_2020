@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7bf4685737976442be10707cef8738b, type: 3}
-  m_Name: Fishing Rod
+  m_Name: Slingshot
   m_EditorClassIdentifier: 
-  ID: fishing_rod
-  cooldownTime: 1
-  itemMesh: {fileID: 2381890483179193753, guid: 34bffe34147a1b545a95554c7008d978,
+  ID: slingshot
+  cooldownTime: 0.05
+  itemMesh: {fileID: 7629811779324647873, guid: 2c06c329abb559543aa3dd5e41a41250,
     type: 3}
