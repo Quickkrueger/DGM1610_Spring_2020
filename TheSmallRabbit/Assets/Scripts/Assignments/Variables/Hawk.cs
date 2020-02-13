@@ -26,6 +26,17 @@ public class Hawk : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (flightPathCenter == null)
+        {
+            try
+            {
+                flightPathCenter = FindObjectOfType<Burrow>().transform;
+            }
+            catch
+            {
+                Destroy(gameObject);
+            }
+        }
         attackDamage = 5;
         flightPathY = transform.position.y;
         GetComponent<Renderer>().material.color = coloration;

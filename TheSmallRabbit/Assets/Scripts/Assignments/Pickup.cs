@@ -6,7 +6,7 @@ public class Pickup : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Rabbit")
+        if (other.gameObject.tag == "Rabbit" || other.gameObject.tag == "Player")
         {
             PickupEffect();
             Destroy(gameObject);
