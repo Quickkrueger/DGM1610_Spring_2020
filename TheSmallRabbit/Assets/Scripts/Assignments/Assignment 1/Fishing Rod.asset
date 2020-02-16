@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: fishing_rod
   cooldownTime: 1
-  itemMesh: {fileID: 2381890483179193753, guid: 34bffe34147a1b545a95554c7008d978,
+  itemMesh: {fileID: 4068373912626513877, guid: 0bb91fcae1751664bb04e24293373c93,
     type: 3}

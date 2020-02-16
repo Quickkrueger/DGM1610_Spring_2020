@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: slingshot
   cooldownTime: 0.05
-  itemMesh: {fileID: 7629811779324647873, guid: 2c06c329abb559543aa3dd5e41a41250,
+  itemMesh: {fileID: 4068373912626513877, guid: 225f9df2822e0654e91f8f16f45e54fb,
     type: 3}

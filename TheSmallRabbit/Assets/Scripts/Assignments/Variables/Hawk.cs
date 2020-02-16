@@ -34,7 +34,7 @@ public class Hawk : MonoBehaviour
             }
             catch
             {
-                Destroy(gameObject);
+                flightPathCenter = FindObjectOfType<Pickup>().transform;
             }
         }
         attackDamage = 5;
@@ -83,7 +83,6 @@ public class Hawk : MonoBehaviour
         baseAngleIncrement = (Mathf.PI / (flightRadius + baseFlightRadius));
 
         angleIncrement = ((speed / baseSpeed) * baseAngleIncrement);
-        
         flightAngle += angleIncrement;
 
         destination = new Vector3(flightPathCenter.position.x + Mathf.Cos(flightAngle) * flightRadius, flightPathY, flightPathCenter.position.z + Mathf.Sin(flightAngle) * flightRadius);
