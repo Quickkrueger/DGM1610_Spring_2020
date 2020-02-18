@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
     private ItemScriptableObject[] items;
+    int equippedSlot = 1;
     int nextIndex = 0;
     public Image[] icons;
     public GameObject hotbar;
@@ -15,6 +16,7 @@ public class InventoryManager : MonoBehaviour
     {
         instance = GetComponent<InventoryManager>();
         items = new ItemScriptableObject[10];
+        ItemToEquip(equippedSlot);
     }
 
     public void AddItemToInventory(ItemScriptableObject itemData)

@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetAxis("Fire1") > 0.01f && canFire && equippedItem != null)
         {
+            //TODO: Move all equipment related code to the inventory manager. the equipped item should be tracked there, 
+            //if the item is ready to use should be tracked there, if an item has filled the selected inventory slot should be tracked there
             UseItem();
         }
 
