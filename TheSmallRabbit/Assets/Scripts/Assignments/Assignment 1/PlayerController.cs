@@ -31,11 +31,6 @@ public class PlayerController : MonoBehaviour
             UseItem();
         }
 
-        if(Input.GetAxis("Fire1") <= 0.01f)
-        {
-            canFire = true;
-        }
-
         if (Input.GetAxis("Use") > 0.01f)
         {
             //Interact();   
@@ -104,46 +99,22 @@ public class PlayerController : MonoBehaviour
 
     private void EquipItem()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        for(int i = 48; i <= 57; i++)
         {
-            equippedItem = InventoryManager.instance.ItemToEquip(1);
+            KeyCode current = (KeyCode)i;
+            if (Input.GetKeyDown(current))
+            {
+                if(i == 48)
+                {
+                    equippedItem = InventoryManager.instance.ItemToEquip(10);
+                }
+                else
+                {
+                    equippedItem = InventoryManager.instance.ItemToEquip(i - 48);
+                }
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            equippedItem = InventoryManager.instance.ItemToEquip(2);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            equippedItem = InventoryManager.instance.ItemToEquip(3);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            equippedItem = InventoryManager.instance.ItemToEquip(4);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            equippedItem = InventoryManager.instance.ItemToEquip(5);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            equippedItem = InventoryManager.instance.ItemToEquip(6);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            equippedItem = InventoryManager.instance.ItemToEquip(7);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            equippedItem = InventoryManager.instance.ItemToEquip(8);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            equippedItem = InventoryManager.instance.ItemToEquip(9);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            equippedItem = InventoryManager.instance.ItemToEquip(10);
-        }
+        
 
         if(equippedItem != null && equippedItem.ID == "slingshot")
         {
@@ -155,10 +126,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator ItemCooldown()
+    public IEnumerator ItemCooldown()
     {
         yield return new WaitForSeconds(equippedItem.cooldownTime);
         canFire = true;
+    }
+
+    public void CoolDown()
+    {
+        StartCoroutine(ItemCooldown());
     }
 
 }

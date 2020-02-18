@@ -14,7 +14,6 @@ public class Rabbit : MonoBehaviour
     public float moveSpeed;
     public float rotateSpeed = 2;
     private float yaw = 0.0f;
-    private float pitch = 0.0f;
     private bool isCaught = false;
     // Start is called before the first frame update
     void Start()

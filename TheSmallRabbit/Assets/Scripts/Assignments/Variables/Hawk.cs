@@ -13,7 +13,6 @@ public class Hawk : MonoBehaviour
     private bool hasDestination;
     private GameObject prey;
     private Vector3 destination;
-    private float flightError = 1f;
     private float flightAngle = 0;
     private float baseAngleIncrement;
     private float angleIncrement;

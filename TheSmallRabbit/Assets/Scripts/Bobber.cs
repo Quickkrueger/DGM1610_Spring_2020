@@ -10,13 +10,13 @@ public class Bobber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Fire1") <= 0.01f)
+        if (Input.GetAxis("Fire1") <= 0.01f && !recalled)
         {
             recalled = true;
             GetComponent<SphereCollider>().isTrigger = true;
             GetComponent<Rigidbody>().isKinematic = true;
         }
-        if (recalled)
+        else if (recalled)
         {
             ReturnToPlayer();
         }
@@ -31,8 +31,9 @@ public class Bobber : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (recalled)
+        if (recalled && other.gameObject == owner)
         {
+            owner.GetComponent<PlayerController>().CoolDown();
             Destroy(gameObject);
         }
     }
