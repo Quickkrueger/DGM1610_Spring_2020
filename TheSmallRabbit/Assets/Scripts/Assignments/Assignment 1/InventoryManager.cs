@@ -7,8 +7,9 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
     private ItemScriptableObject[] items;
-    int equippedSlot = 1;
-    int nextIndex = 0;
+    private int equippedSlot = 0;
+    private int nextIndex = 0;
+    private bool canFire = true;
     public Image[] icons;
     public GameObject hotbar;
 
@@ -16,7 +17,7 @@ public class InventoryManager : MonoBehaviour
     {
         instance = GetComponent<InventoryManager>();
         items = new ItemScriptableObject[10];
-        ItemToEquip(equippedSlot);
+        ItemToEquip();
     }
 
     public void AddItemToInventory(ItemScriptableObject itemData)
@@ -26,26 +27,62 @@ public class InventoryManager : MonoBehaviour
         nextIndex++;
     }
 
-    public ItemScriptableObject ItemToEquip(int inventorySlot)
+    public ItemScriptableObject ItemToEquip()
     {
 
         for (int i = 0; i < hotbar.transform.childCount; i++)
         {
-            if (i != inventorySlot - 1)
+            if (i != equippedSlot )
             {
                 hotbar.transform.GetChild(i).GetComponent<Outline>().effectColor = Color.black;
             }
             else
             {
-                hotbar.transform.GetChild(inventorySlot - 1).GetComponent<Outline>().effectColor = Color.red;
+                hotbar.transform.GetChild(equippedSlot).GetComponent<Outline>().effectColor = Color.red;
             }
         }
 
-        if (nextIndex >= inventorySlot)
+        if (nextIndex >= equippedSlot)
         {
-            return items[inventorySlot - 1];
+            return items[equippedSlot ];
         }
         return null;
+    }
+
+    IEnumerator ItemCooldown()
+    {
+        yield return new WaitForSeconds(items[equippedSlot].cooldownTime);
+        canFire = true;
+    }
+
+    public void CoolDown()
+    {
+        StartCoroutine(ItemCooldown());
+    }
+
+    public ItemScriptableObject EquipItem()
+    {
+        for (int i = 48; i <= 57; i++)
+        {
+            KeyCode current = (KeyCode)i;
+            if (Input.GetKeyDown(current))
+            {
+                if (i == 48)
+                {
+                    equippedSlot = 10;
+                }
+                else
+                {
+                    equippedSlot = i - 49;
+                }
+            }
+        }
+        return ItemToEquip();
+    }
+
+    public void UseItem()
+    {
+
     }
 
 }

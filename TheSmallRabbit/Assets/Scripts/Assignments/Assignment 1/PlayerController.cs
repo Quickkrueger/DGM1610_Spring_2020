@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public GameObject bobberPrefab;
     private ItemScriptableObject equippedItem;
     private bool firearmEquipped = false;
-    private bool canFire = true;
 
     // Start is called before the first frame update
     
@@ -26,10 +25,9 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        if (Input.GetAxis("Fire1") > 0.01f && canFire && equippedItem != null)
+        if (Input.GetAxis("Fire1") > 0.01f && equippedItem != null)
         {
-            //TODO: Move all equipment related code to the inventory manager. the equipped item should be tracked there, 
-            //if the item is ready to use should be tracked there, if an item has filled the selected inventory slot should be tracked there
+            //TODO: Move item prefab tracking and behaviors to inventorymanager/ unique item scripts, including the "canFire" functionality.
             UseItem();
         }
 
@@ -82,12 +80,11 @@ public class PlayerController : MonoBehaviour
 
     private void UseItem()
     {
-        canFire = false;
 
         if (firearmEquipped)
         {
             Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation);
-            StartCoroutine(ItemCooldown());
+            InventoryManager.instance.CoolDown();
         }
         else if(equippedItem.ID == "fishing_rod")
         {
@@ -101,21 +98,7 @@ public class PlayerController : MonoBehaviour
 
     private void EquipItem()
     {
-        for(int i = 48; i <= 57; i++)
-        {
-            KeyCode current = (KeyCode)i;
-            if (Input.GetKeyDown(current))
-            {
-                if(i == 48)
-                {
-                    equippedItem = InventoryManager.instance.ItemToEquip(10);
-                }
-                else
-                {
-                    equippedItem = InventoryManager.instance.ItemToEquip(i - 48);
-                }
-            }
-        }
+        equippedItem = InventoryManager.instance.EquipItem();
         
 
         if(equippedItem != null && equippedItem.ID == "slingshot")
@@ -127,16 +110,6 @@ public class PlayerController : MonoBehaviour
             firearmEquipped = false;
         }
     }
-
-    public IEnumerator ItemCooldown()
-    {
-        yield return new WaitForSeconds(equippedItem.cooldownTime);
-        canFire = true;
-    }
-
-    public void CoolDown()
-    {
-        StartCoroutine(ItemCooldown());
-    }
+    
 
 }

@@ -33,7 +33,7 @@ public class Bobber : MonoBehaviour
     {
         if (recalled && other.gameObject == owner)
         {
-            owner.GetComponent<PlayerController>().CoolDown();
+            InventoryManager.instance.CoolDown();
             Destroy(gameObject);
         }
     }
