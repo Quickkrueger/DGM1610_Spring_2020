@@ -80,9 +80,14 @@ public class InventoryManager : MonoBehaviour
         return ItemToEquip();
     }
 
-    public void UseItem()
+    public void UseItem(GameObject owner)
     {
-
+        if(items[equippedSlot] != null && items[equippedSlot].projectilePrefab != null)
+        {
+            GameObject projectile = Instantiate(items[equippedSlot].projectilePrefab, owner.transform.position + owner.transform.forward, owner.transform.rotation);
+            projectile.GetComponent<Projectile>().SetOwner(owner);
+        }
+        //Play item specific animation
     }
 
 }

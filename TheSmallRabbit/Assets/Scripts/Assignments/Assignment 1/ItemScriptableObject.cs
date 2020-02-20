@@ -10,5 +10,7 @@ public class ItemScriptableObject : ScriptableObject
     public float cooldownTime;
     public Mesh itemMesh;
     public Sprite icon;
-
+    public GameObject projectilePrefab;
+    public bool toggles;
+    public bool isFireArm;
 }

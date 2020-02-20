@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bobber : MonoBehaviour
+public class Bobber : Projectile
 {
     bool recalled = false;
     private float recallSpeed = 50f;
-    GameObject owner;
     // Update is called once per frame
     void Update()
     {
@@ -38,8 +37,5 @@ public class Bobber : MonoBehaviour
         }
     }
 
-    public void SetOwner(GameObject player)
-    {
-        owner = player;
-    }
+    
 }

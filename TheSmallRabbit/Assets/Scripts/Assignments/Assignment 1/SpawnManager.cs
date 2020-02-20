@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-
+    //TODO: Add ability to spawn more than just one type of enemy.
     public GameObject[] enemyPrefabs;
     public int enemyIndex;
     // Start is called before the first frame update

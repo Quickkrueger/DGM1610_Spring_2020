@@ -80,30 +80,16 @@ public class PlayerController : MonoBehaviour
 
     private void UseItem()
     {
-
-        if (firearmEquipped)
-        {
-            Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation);
-            InventoryManager.instance.CoolDown();
-        }
-        else if(equippedItem.ID == "fishing_rod")
-        {
-            GameObject bobber = Instantiate(bobberPrefab, transform.position + transform.forward + transform.up, transform.rotation);
-            bobber.GetComponent<Rigidbody>().velocity = (transform.up + transform.forward) * 5;
-            bobber.GetComponent<Bobber>().SetOwner(gameObject);
-        }
-        
+        InventoryManager.instance.UseItem(gameObject);        
         
     }
 
     private void EquipItem()
     {
         equippedItem = InventoryManager.instance.EquipItem();
-        
-
-        if(equippedItem != null && equippedItem.ID == "slingshot")
+        if (equippedItem != null)
         {
-            firearmEquipped = true;
+            firearmEquipped = equippedItem.isFireArm;
         }
         else
         {

@@ -17,3 +17,7 @@ MonoBehaviour:
   itemMesh: {fileID: 7206472575975855354, guid: 0bb91fcae1751664bb04e24293373c93,
     type: 3}
   icon: {fileID: 21300000, guid: 7eb6496fd903a8d4c928ad21db8ae049, type: 3}
+  projectilePrefab: {fileID: 8953473844630347270, guid: 07a69689c3335864fb9518894c6b081a,
+    type: 3}
+  toggles: 1
+  isFireArm: 0
