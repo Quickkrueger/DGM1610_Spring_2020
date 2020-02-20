@@ -21,6 +21,8 @@ public class Hawk : MonoBehaviour
     private float flightPathY;
     private bool caughtPrey = false;
     private bool exitingDive = false;
+    private bool canDamage = true;
+    private bool stunned = false;
     int currentFlightPoint = 0;
     // Start is called before the first frame update
     void Start()
@@ -45,7 +47,7 @@ public class Hawk : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Rabbit")
+        if (!stunned && !caughtPrey && other.tag == "Rabbit")
         {
             prey = other.gameObject;
             inPursuit = true;
@@ -55,7 +57,7 @@ public class Hawk : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Rabbit")
+        if (!stunned && !caughtPrey && collision.gameObject.tag == "Rabbit")
         {
             GrabPrey();
         }
@@ -73,6 +75,21 @@ public class Hawk : MonoBehaviour
         else
         {
             MaintainPursuit();
+        }
+
+        if(caughtPrey && canDamage)
+        {
+            GameManager.instance.HarmRabbit(5);
+            canDamage = false;
+            StartCoroutine(AttackCooldown());
+        }
+
+        if(caughtPrey && prey.GetComponent<Rabbit>().Escaped())
+        {
+            caughtPrey = false;
+            canDamage = false;
+            stunned = true;
+            StartCoroutine(EscapeStun());
         }
     }
 
@@ -103,10 +120,10 @@ public class Hawk : MonoBehaviour
     private void GrabPrey()
     {
         caughtPrey = true;
+        inPursuit = false;
         prey.transform.parent = transform.GetChild(0);
         prey.GetComponent<Rabbit>().Caught();
         speed = 10;
-        GameManager.instance.HarmRabbit(5);
     }
 
     private void Move()
@@ -123,4 +140,16 @@ public class Hawk : MonoBehaviour
         speed = 10;
     }
 
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(3f);
+        canDamage = true;
+    }
+
+    IEnumerator EscapeStun()
+    {
+        yield return new WaitForSeconds(5f);
+        stunned = false;
+        canDamage = true;
+    }
 }

@@ -70,15 +70,17 @@ public class InventoryManager : MonoBehaviour
             {
                 if (i == 48)
                 {
-                    equippedSlot = 10;
+                    equippedSlot = 9;
                 }
                 else
                 {
                     equippedSlot = i - 49;
                 }
+
+                return ItemToEquip();
             }
         }
-        return ItemToEquip();
+        return null;
     }
 
     public void UseItem(GameObject owner)

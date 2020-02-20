@@ -15,6 +15,8 @@ public class Rabbit : MonoBehaviour
     public float rotateSpeed = 2;
     private float yaw = 0.0f;
     private bool isCaught = false;
+    private int escapePoints = 0;
+    private int escapeThreshold = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,22 @@ public class Rabbit : MonoBehaviour
         if (!burrowed && !isCaught)
         {
             Move();
+        }
+
+        if (isCaught)
+        {
+            if (Input.anyKeyDown)
+            {
+                escapePoints++;
+                if(escapePoints >= escapeThreshold)
+                {
+                    isCaught = false;
+                    GetComponent<Rigidbody>().isKinematic = false;
+                    GetComponent<Collider>().enabled = true;
+                    transform.parent = null;
+                    escapePoints = 0;
+                }
+            }
         }
 
         Rotate();
@@ -134,5 +152,10 @@ public class Rabbit : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = true;
         transform.position = transform.parent.position;
         GetComponent<Collider>().enabled = false;
+    }
+
+    public bool Escaped()
+    {
+        return !isCaught;
     }
 }
