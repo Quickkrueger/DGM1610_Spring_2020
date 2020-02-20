@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     private bool canFire = true;
     public Image[] icons;
     public GameObject hotbar;
+    private bool axisUp = true;
 
     void Start()
     {
@@ -82,12 +83,30 @@ public class InventoryManager : MonoBehaviour
 
     public void UseItem(GameObject owner)
     {
-        if(items[equippedSlot] != null && items[equippedSlot].projectilePrefab != null)
+        if (canFire)
         {
-            GameObject projectile = Instantiate(items[equippedSlot].projectilePrefab, owner.transform.position + owner.transform.forward, owner.transform.rotation);
-            projectile.GetComponent<Projectile>().SetOwner(owner);
+            canFire = false;
+            axisUp = false;
+            if (items[equippedSlot] != null && items[equippedSlot].projectilePrefab != null)
+            {
+                GameObject projectile = Instantiate(items[equippedSlot].projectilePrefab, owner.transform.position + owner.transform.forward, owner.transform.rotation);
+                projectile.GetComponent<Projectile>().SetOwner(owner);
+            }
+            if (!items[equippedSlot].toggles)
+            {
+                CoolDown();
+            }
+        }
+        else if(items[equippedSlot].toggles && axisUp)
+        {
+            canFire = true;
         }
         //Play item specific animation
+    }
+
+    public void UseAxisUp()
+    {
+        axisUp = true;
     }
 
 }

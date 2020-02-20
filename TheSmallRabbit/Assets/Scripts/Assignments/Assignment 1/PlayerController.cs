@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
             //TODO: Move item prefab tracking and behaviors to inventorymanager/ unique item scripts, including the "canFire" functionality.
             UseItem();
         }
+        else if(Input.GetAxis("Fire1") < 0.01f)
+        {
+            InventoryManager.instance.UseAxisUp();
+        }
 
         if (Input.GetAxis("Use") > 0.01f)
         {
