@@ -2,27 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hawk : MonoBehaviour
+public class Hawk : Enemy
 {
-    private int attackDamage;
-    public Color coloration;
-    public float speed = 20;
-    private float baseSpeed = 20;
     public Transform flightPathCenter;
-    private bool inPursuit = false;
-    private bool hasDestination;
-    private GameObject prey;
-    private Vector3 destination;
     private float flightAngle = 0;
     private float baseAngleIncrement;
     private float angleIncrement;
     private float baseFlightRadius = 100f;
     public float flightRadius = 0.0f;
     private float flightPathY;
-    private bool caughtPrey = false;
     private bool exitingDive = false;
-    private bool canDamage = true;
-    private bool stunned = false;
     int currentFlightPoint = 0;
     // Start is called before the first frame update
     void Start()
@@ -64,7 +53,7 @@ public class Hawk : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
         Move();
 
@@ -117,20 +106,6 @@ public class Hawk : MonoBehaviour
         }
     }
 
-    private void GrabPrey()
-    {
-        caughtPrey = true;
-        inPursuit = false;
-        prey.transform.parent = transform.GetChild(0);
-        prey.GetComponent<Rabbit>().Caught();
-        speed = 10;
-    }
-
-    private void Move()
-    {
-        GetComponent<Rigidbody>().velocity = transform.forward * speed;
-    }
-
     IEnumerator ExitDive()
     {
         yield return new WaitForSeconds(0.5f);
@@ -138,18 +113,5 @@ public class Hawk : MonoBehaviour
         exitingDive = false;
         prey = null;
         speed = 10;
-    }
-
-    IEnumerator AttackCooldown()
-    {
-        yield return new WaitForSeconds(3f);
-        canDamage = true;
-    }
-
-    IEnumerator EscapeStun()
-    {
-        yield return new WaitForSeconds(5f);
-        stunned = false;
-        canDamage = true;
     }
 }
