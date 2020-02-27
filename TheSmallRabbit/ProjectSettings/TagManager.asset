@@ -12,6 +12,7 @@ TagManager:
   - Obstacle
   - Food
   - Item
+  - Enemy
   layers:
   - Default
   - TransparentFX

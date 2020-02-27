@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hawk : Enemy
+public class Hawk : Predator
 {
     public Transform flightPathCenter;
     private float flightAngle = 0;
@@ -32,16 +32,6 @@ public class Hawk : Enemy
         GetComponent<Renderer>().material.color = coloration;
         baseAngleIncrement = (Mathf.PI / (flightRadius + baseFlightRadius));
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!stunned && !caughtPrey && other.tag == "Rabbit")
-        {
-            prey = other.gameObject;
-            inPursuit = true;
-            speed = 20;
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
