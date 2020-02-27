@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     protected int attackDamage;
     public Color coloration;
     public float speed = 20;
+    public int health = 20;
     protected float baseSpeed = 20;
     protected bool inPursuit = false;
     protected bool hasDestination;
@@ -72,5 +73,18 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(5f);
         stunned = false;
         canDamage = true;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if(health > 0)
+        {
+            health -= damage;
+            Debug.Log("Owwie, oof, ouchie.");
+        }
+        else
+        {
+            Debug.Log("DED.");
+        }
     }
 }

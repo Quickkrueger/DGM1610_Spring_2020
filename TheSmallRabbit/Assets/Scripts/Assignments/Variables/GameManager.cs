@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -53,6 +54,27 @@ public class GameManager : MonoBehaviour
     public void HarmRabbit(int damage)
     {
         currentHealth -= damage;
+        if(currentHealth <= 0)
+        {
+            GameOver();
+        }
     }
+
+    private void GameOver()
+    {
+
+    }
+
+    public void QuitLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
 
 }

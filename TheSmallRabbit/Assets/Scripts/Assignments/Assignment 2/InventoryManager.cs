@@ -45,7 +45,7 @@ public class InventoryManager : MonoBehaviour
 
         if (nextIndex >= equippedSlot)
         {
-            return items[equippedSlot ];
+            return items[equippedSlot];
         }
         return null;
     }
@@ -77,10 +77,10 @@ public class InventoryManager : MonoBehaviour
                     equippedSlot = i - 49;
                 }
 
-                return ItemToEquip();
+                return items[equippedSlot];
             }
         }
-        return null;
+        return ItemToEquip();
     }
 
     public void UseItem(GameObject owner)
