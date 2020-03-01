@@ -3068,6 +3068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hungerBar: {fileID: 2069494263}
   healthBar: {fileID: 340924321}
+  gameOverScreen: {fileID: 1183731931}
   maxHealth: 20
   maxHunger: 20
   player: {fileID: 1239350860}

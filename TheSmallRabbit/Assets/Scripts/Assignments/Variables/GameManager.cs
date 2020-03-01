@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Slider hungerBar;
     public Slider healthBar;
+    public CanvasGroup gameOverScreen;
     public int maxHealth;
     public int maxHunger;
     private int currentHealth;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     void Start()
     {
+        gameOverScreen.alpha = 0;
         instance = GetComponent<GameManager>();
 
         hungerBar.maxValue = maxHunger;
@@ -62,7 +64,16 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        StartCoroutine(FadeInGameOver());
+    }
 
+    IEnumerator FadeInGameOver()
+    {
+        while(gameOverScreen.alpha < 1)
+        {
+            yield return new WaitForSeconds(0.01f);
+            gameOverScreen.alpha += 0.01f;
+        }
     }
 
     public void QuitLevel()
