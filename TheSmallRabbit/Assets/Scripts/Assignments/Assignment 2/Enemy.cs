@@ -6,15 +6,19 @@ public class Enemy : MonoBehaviour
 {
     protected int attackDamage;
     public Color coloration;
-    public float speed = 20;
-    public int health = 20;
+    public float speed = 3;
+    private int health;
     protected float baseSpeed = 20;
     protected bool canDamage = true;
+    protected int maxHealth = 5;
+    public Transform spawnPoint;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
+        health = maxHealth;
         attackDamage = 5;
         GetComponent<Renderer>().material.color = coloration;
+        spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint").transform;
 
     }
 
@@ -27,10 +31,11 @@ public class Enemy : MonoBehaviour
     }
 
 
-    protected void Move()
+    protected virtual void Move()
     {
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
     }
+
 
     protected IEnumerator AttackCooldown()
     {
@@ -48,6 +53,12 @@ public class Enemy : MonoBehaviour
         else
         {
             Debug.Log("DED.");
+            health = maxHealth;
+            transform.position = spawnPoint.position;
+            transform.rotation = spawnPoint.rotation;
+
         }
     }
+
+
 }
