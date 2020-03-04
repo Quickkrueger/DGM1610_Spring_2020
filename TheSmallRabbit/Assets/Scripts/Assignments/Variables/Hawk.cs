@@ -12,10 +12,11 @@ public class Hawk : Predator
     public float flightRadius = 0.0f;
     private float flightPathY;
     private bool exitingDive = false;
-    int currentFlightPoint = 0;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         if (flightPathCenter == null)
         {
             try
@@ -45,7 +46,7 @@ public class Hawk : Predator
     // Update is called once per frame
     protected override void FixedUpdate()
     {
-        Move();
+        base.FixedUpdate();
 
         if (!inPursuit || caughtPrey)
         {
