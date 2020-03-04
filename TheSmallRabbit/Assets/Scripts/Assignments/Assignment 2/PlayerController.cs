@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool jumping = false;
+    private bool jumping = false; // Like grounded but the opposite
     public float moveSpeed;
     public float rotateSpeed = 2;
     public GameObject projectilePrefab;
@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetAxis("Fire1") > 0.01f && equippedItem != null)
         {
-            //TODO: Move item prefab tracking and behaviors to inventorymanager/ unique item scripts, including the "canFire" functionality.
             UseItem();
         }
         else if(Input.GetAxis("Fire1") < 0.01f)
