@@ -13,6 +13,7 @@ public class Predator : Enemy
     protected Vector3 destination;
     protected bool caughtPrey = false;
     protected bool stunned = false;
+    public int pursuitSpeed;
 
     protected IEnumerator EscapeStun()
     {
@@ -44,7 +45,7 @@ public class Predator : Enemy
         {
             prey = other.gameObject;
             inPursuit = true;
-            speed = 20;
+            speed = pursuitSpeed;
         }
     }
 }
