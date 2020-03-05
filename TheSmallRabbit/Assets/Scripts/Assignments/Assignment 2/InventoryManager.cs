@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
-{
+{ //TODO: Refactor all inputs to use GetButtonDown or GetButton instead of getAxis
     public static InventoryManager instance;
     private ItemScriptableObject[] items;
     private int equippedSlot = 0;
@@ -12,7 +12,6 @@ public class InventoryManager : MonoBehaviour
     private bool canFire = true;
     public Image[] icons;
     public GameObject hotbar;
-    private bool axisUp = true;
 
     void Start()
     {
@@ -88,7 +87,6 @@ public class InventoryManager : MonoBehaviour
         if (canFire)
         {
             canFire = false;
-            axisUp = false;
             if (items[equippedSlot] != null && items[equippedSlot].projectilePrefab != null) //TODO: Fix bobber duplication
             {
                 GameObject projectile = Instantiate(items[equippedSlot].projectilePrefab, owner.transform.position + owner.transform.forward, owner.transform.rotation);
@@ -99,16 +97,11 @@ public class InventoryManager : MonoBehaviour
                 CoolDown();
             }
         }
-        else if(items[equippedSlot].toggles && axisUp)
+        else if(items[equippedSlot].toggles && Input.GetButtonUp("Fire1"))
         {
             canFire = true;
         }
         //Play item specific animation
-    }
-
-    public void UseAxisUp()
-    {
-        axisUp = true;
     }
 
 }

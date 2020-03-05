@@ -11,22 +11,29 @@ public class Rabbit : MonoBehaviour
     private bool burrowed = false;
     private GameObject currentBurrow;
     private bool jumping = false;
+    public float jumpPower = 10;
     public float moveSpeed;
     public float rotateSpeed = 2;
     private float yaw = 0.0f;
     private bool isCaught = false;
     private int escapePoints = 0;
     private int escapeThreshold = 5;
+    private Rigidbody rb;
+    private Renderer rRenderer;
+    private Collider rCollider;
     // Start is called before the first frame update
     void Start()
     {
         InitializeRabbit();
+        rb = GetComponent<Rigidbody>();
+        rRenderer = GetComponent<Renderer>();
+        rCollider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !burrowed && !jumping && !isCaught)
+        if (Input.GetButtonDown("Jump") && !burrowed && !jumping && !isCaught)
         {
             Jump();
         }
@@ -44,8 +51,8 @@ public class Rabbit : MonoBehaviour
                 if(escapePoints >= escapeThreshold)
                 {
                     isCaught = false;
-                    GetComponent<Rigidbody>().isKinematic = false;
-                    GetComponent<Collider>().enabled = true;
+                    rb.isKinematic = false;
+                    rCollider.enabled = true;
                     transform.parent = null;
                     escapePoints = 0;
                 }
@@ -54,7 +61,7 @@ public class Rabbit : MonoBehaviour
 
         Rotate();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Use"))
         {
             if (burrowed)
             {
@@ -69,7 +76,7 @@ public class Rabbit : MonoBehaviour
 
     void InitializeRabbit()
     {
-        GetComponent<Renderer>().material.color = coloration;
+        rRenderer.material.color = coloration;
     }
 
     public void LeaveBurrow()
@@ -77,8 +84,8 @@ public class Rabbit : MonoBehaviour
         burrowed = false;
         currentBurrow.GetComponent<Burrow>().EjectOccupant();
         gameObject.transform.position = currentBurrow.transform.position + Vector3.up * 0.3f;
-        gameObject.GetComponent<Collider>().enabled = true;
-        gameObject.GetComponent<Rigidbody>().useGravity = true;
+        rCollider.enabled = true;
+        rb.useGravity = true;
         Jump();
     }
 
@@ -106,22 +113,30 @@ public class Rabbit : MonoBehaviour
         }
     }
 
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground" && !jumping)
+        {
+            jumping = true;
+        }
+    }
+
     private void Burrow()
     {
         if (currentBurrow.GetComponent<Burrow>().AllowOccupant(gameObject.GetComponent<Rabbit>()))
         {
-            gameObject.GetComponent<Collider>().enabled = false;
-            gameObject.GetComponent<Rigidbody>().useGravity = false;
+            rCollider.enabled = false;
+            rb.useGravity = false;
             gameObject.transform.position = currentBurrow.transform.position;
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
             burrowed = true;
         }
     }
 
     private void Jump()
     {
-        jumping = true;
-        GetComponent<Rigidbody>().AddForceAtPosition(Vector3.up * 200, gameObject.transform.position);
+        rb.AddForce(Vector3.up * jumpPower * 1000 * Time.deltaTime);
     }
 
     private void Move()
@@ -129,7 +144,7 @@ public class Rabbit : MonoBehaviour
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
 
-        GetComponent<Rigidbody>().velocity = transform.forward * verticalMove * moveSpeed * Time.deltaTime + new Vector3(0f, GetComponent<Rigidbody>().velocity.y, 0f) + transform.right * horizontalMove * moveSpeed * Time.deltaTime;
+        rb.velocity = transform.forward * verticalMove * moveSpeed * Time.deltaTime + new Vector3(0f, rb.velocity.y, 0f) + transform.right * horizontalMove * moveSpeed * Time.deltaTime;
     }
 
     private void Rotate()
@@ -149,9 +164,9 @@ public class Rabbit : MonoBehaviour
     public void Caught()
     {
         isCaught = true;
-        GetComponent<Rigidbody>().isKinematic = true;
+        rb.isKinematic = true;
         transform.position = transform.parent.position;
-        GetComponent<Collider>().enabled = false;
+        rCollider.enabled = false;
     }
 
     public bool Escaped()
