@@ -48,4 +48,11 @@ public class Predator : Enemy
             speed = pursuitSpeed;
         }
     }
+
+    protected virtual void MaintainPursuit()
+    {
+        //transform.position = new Vector3(transform.position.x + (distanceX / distance) * Time.deltaTime * 5, transform.position.y + (distanceY / distance) * Time.deltaTime * 5, transform.position.z + (distanceZ / distance) * Time.deltaTime * 5);
+        //transform.LookAt(prey.transform);
+        transform.LookAt(prey.transform);        
+    }
 }

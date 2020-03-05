@@ -24,10 +24,11 @@ public class Rabbit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitializeRabbit();
         rb = GetComponent<Rigidbody>();
         rRenderer = GetComponent<Renderer>();
         rCollider = GetComponent<Collider>();
+
+        InitializeRabbit();
     }
 
     // Update is called once per frame

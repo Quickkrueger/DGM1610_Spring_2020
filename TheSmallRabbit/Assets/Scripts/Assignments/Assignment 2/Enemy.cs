@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     protected float baseSpeed = 20;
     protected bool canDamage = true;
     protected int maxHealth = 5;
+    protected Rigidbody rb;
     public Transform spawnPoint;
     // Start is called before the first frame update
     protected virtual void Start()
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
         attackDamage = 5;
         GetComponent<Renderer>().material.color = coloration;
-        spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint").transform;
+        rb = GetComponent<Rigidbody>();
 
     }
 
@@ -33,7 +34,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Move()
     {
-        GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        rb.velocity = transform.forward * speed;
     }
 
 
