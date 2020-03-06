@@ -35,8 +35,9 @@ public class Hawk : Predator
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected override void OnCollisionEnter(Collision collision)
     {
+        base.OnCollisionEnter(collision);
         if (!stunned && !caughtPrey && collision.gameObject.tag == "Rabbit")
         {
             GrabPrey();

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     
-    private KeyCode[] konamiCode = {KeyCode.UpArrow, KeyCode.UpArrow, KeyCode.DownArrow,  KeyCode.DownArrow,  KeyCode.LeftArrow,  KeyCode.RightArrow,  KeyCode.LeftArrow,  KeyCode.RightArrow,  KeyCode.A,  KeyCode.B,  KeyCode.Return};
+    private KeyCode[] konamiCode = {KeyCode.UpArrow, KeyCode.UpArrow, KeyCode.DownArrow,  KeyCode.DownArrow,  KeyCode.LeftArrow,  KeyCode.RightArrow,  KeyCode.LeftArrow,  KeyCode.RightArrow,  KeyCode.B,  KeyCode.A,  KeyCode.Return};
     private int currentCodePoint = 0;
 
     private void Update()

@@ -27,15 +27,7 @@ public class Fox : Predator
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Obstacle")
-        {
-            transform.Translate(Vector3.forward * -0.5f);
-            float randomRotation = Random.Range(90f, 270f);
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + randomRotation, transform.eulerAngles.z);
-        }
-    }
+    
     private IEnumerator Wander()
     {
         int timeToWander = Random.Range(1, 4);
