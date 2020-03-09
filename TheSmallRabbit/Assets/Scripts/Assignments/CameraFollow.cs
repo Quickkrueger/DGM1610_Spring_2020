@@ -6,6 +6,8 @@ public class CameraFollow : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject player;
+    [Range(0.0f, 1.0f)]
+    public float followSpeed = 0.5f;
     float xDiff;
     float yDiff;
     float zDiff;
@@ -19,6 +21,6 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x + xDiff, player.transform.position.y + yDiff, player.transform.position.z + zDiff), 0.1f);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x + xDiff, player.transform.position.y + yDiff, player.transform.position.z + zDiff), followSpeed);
     }
 }
