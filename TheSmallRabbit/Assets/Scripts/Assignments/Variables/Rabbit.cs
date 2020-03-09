@@ -92,7 +92,7 @@ public class Rabbit : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-            if (collision.gameObject.tag == "Burrow")
+            if (collision.gameObject.tag == "Burrow" && !isCaught)
             {
                     currentBurrow = collision.gameObject;
             }
@@ -168,6 +168,7 @@ public class Rabbit : MonoBehaviour
         rb.isKinematic = true;
         transform.position = transform.parent.position;
         rCollider.enabled = false;
+        currentBurrow = null;
     }
 
     public bool Escaped()

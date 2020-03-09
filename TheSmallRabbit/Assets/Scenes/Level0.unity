@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc276e86116ee384ba2bcc9d9f84aad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coloration: {r: 0, g: 0, b: 0, a: 0}
+  coloration: {r: 0.8301887, g: 0.47727022, b: 0, a: 1}
   speed: 3
   spawnPoint: {fileID: 0}
   pursuitSpeed: 0
