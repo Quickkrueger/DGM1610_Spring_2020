@@ -14,13 +14,13 @@ public class Bobber : Projectile
     }
     void Update()
     {
-        if (Input.GetAxis("Fire1") <= 0.01f && !recalled)
+        if (Input.GetButtonDown("Fire1"))
         {
             recalled = true;
             GetComponent<SphereCollider>().isTrigger = true;
             GetComponent<Rigidbody>().isKinematic = true;
         }
-        else if (recalled)
+        if (recalled)
         {
             ReturnToPlayer();
         }
@@ -41,6 +41,8 @@ public class Bobber : Projectile
             Destroy(gameObject);
         }
     }
+
+
 
     
 }

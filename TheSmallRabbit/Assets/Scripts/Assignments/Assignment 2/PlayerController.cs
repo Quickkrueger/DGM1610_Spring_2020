@@ -38,8 +38,10 @@ public class PlayerController : MonoBehaviour
         {
             //Interact();   
         }
-
-        EquipItem();
+        if (Input.anyKey)
+        {
+            EquipItem();
+        }
 
     }
 

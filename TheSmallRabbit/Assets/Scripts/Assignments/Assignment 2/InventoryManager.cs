@@ -96,6 +96,10 @@ public class InventoryManager : MonoBehaviour
             {
                 CoolDown();
             }
+            else
+            {
+
+            }
         }
         else if(items[equippedSlot].toggles && Input.GetButtonUp("Fire1"))
         {
