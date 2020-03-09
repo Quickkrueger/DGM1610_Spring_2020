@@ -35,6 +35,7 @@ public class Predator : Enemy
     {
         if (!stunned && !caughtPrey && collision.gameObject.tag == "Rabbit")
         {
+            prey = collision.gameObject;
             GrabPrey();
         }
     }
