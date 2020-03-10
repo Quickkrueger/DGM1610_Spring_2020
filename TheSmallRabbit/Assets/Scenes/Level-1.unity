@@ -1134,7 +1134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 6188888705270083198, guid: 9b2517c151a43c14bb5effc3de4c8dfa, type: 3}
-  enemyIndex: 0
+  - {fileID: 6854952773011242076, guid: 4128789ae4ac4aa4eb55b2d2163a7689, type: 3}
 --- !u!4 &901571883
 Transform:
   m_ObjectHideFlags: 0
@@ -1673,7 +1673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 1.0475527
+  m_AspectRatio: 1.0473875
 --- !u!1 &1299910697
 GameObject:
   m_ObjectHideFlags: 0
