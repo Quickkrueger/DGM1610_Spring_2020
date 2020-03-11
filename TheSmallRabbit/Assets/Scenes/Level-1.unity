@@ -812,7 +812,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651070810}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 7206472575975855354, guid: 0bb91fcae1751664bb04e24293373c93, type: 3}
 --- !u!1 &659265670
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,6 +2912,7 @@ GameObject:
   - component: {fileID: 2113104334}
   - component: {fileID: 2113104333}
   - component: {fileID: 2113104338}
+  - component: {fileID: 2113104339}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3029,3 +3030,22 @@ MonoBehaviour:
   bobberPrefab: {fileID: 8953473844630347270, guid: 07a69689c3335864fb9518894c6b081a,
     type: 3}
   heldItem: {fileID: 651070810}
+--- !u!95 &2113104339
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113104332}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f2cf4ccb27524540ade8e8688d46adb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
