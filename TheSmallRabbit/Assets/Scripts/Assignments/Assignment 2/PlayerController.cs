@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float jumpPower = 10;
     public GameObject projectilePrefab;
     public GameObject bobberPrefab;
+    public GameObject heldItem;
     private ItemScriptableObject equippedItem;
     private bool firearmEquipped = false;
     private Rigidbody rb;
@@ -101,10 +102,13 @@ public class PlayerController : MonoBehaviour
         if (equippedItem != null)
         {
             firearmEquipped = equippedItem.isFireArm;
+            heldItem.GetComponent<MeshFilter>().mesh = equippedItem.itemMesh;
+
         }
         else
         {
             firearmEquipped = false;
+            heldItem.GetComponent<MeshFilter>().mesh = null;
         }
     }
     

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 
   cooldownTime: 0
-  itemMesh: {fileID: 0}
-  icon: {fileID: 0}
+  itemMesh: {fileID: -8287839383430266118, guid: ca793d6c884cc7042959da5b546a1c02,
+    type: 3}
+  icon: {fileID: 21300000, guid: c48bd551177a1af46b1dfaefc1b4d042, type: 3}
   projectilePrefab: {fileID: 0}
   toggles: 0
   isFireArm: 0
