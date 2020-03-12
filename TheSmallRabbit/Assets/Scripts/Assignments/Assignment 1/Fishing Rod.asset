@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7bf4685737976442be10707cef8738b, type: 3}
   m_Name: Fishing Rod
   m_EditorClassIdentifier: 
-  ID: fishing_rod
+  idNum: 0
+  id: fishing_rod
   cooldownTime: 0.5
   itemMesh: {fileID: 7206472575975855354, guid: 0bb91fcae1751664bb04e24293373c93,
     type: 3}

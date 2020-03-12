@@ -86,11 +86,13 @@ public class InventoryManager : MonoBehaviour
     {
         if (canFire)
         {
+            owner.GetComponent<Animator>().SetBool("UseItem", true);
             canFire = false;
             if (items[equippedSlot] != null && items[equippedSlot].projectilePrefab != null) //TODO: Fix bobber duplication
             {
                 GameObject projectile = Instantiate(items[equippedSlot].projectilePrefab, owner.transform.position + owner.transform.forward, owner.transform.rotation);
                 projectile.GetComponent<Projectile>().SetOwner(owner);
+                owner.GetComponent<Animator>().SetBool("UseItem", false);
             }
             if (!items[equippedSlot].toggles)
             {

@@ -92,8 +92,8 @@ public class PlayerController : MonoBehaviour
 
     private void UseItem()
     {
-        InventoryManager.instance.UseItem(gameObject);        
-        
+        InventoryManager.instance.UseItem(gameObject);
+
     }
 
     private void EquipItem()
@@ -103,12 +103,14 @@ public class PlayerController : MonoBehaviour
         {
             firearmEquipped = equippedItem.isFireArm;
             heldItem.GetComponent<MeshFilter>().mesh = equippedItem.itemMesh;
+            GetComponent<Animator>().SetInteger("Item", equippedItem.idNum);
 
         }
         else
         {
             firearmEquipped = false;
             heldItem.GetComponent<MeshFilter>().mesh = null;
+            GetComponent<Animator>().SetInteger("Item", -1);
         }
     }
     

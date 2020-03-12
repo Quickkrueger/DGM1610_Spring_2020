@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7bf4685737976442be10707cef8738b, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  ID: 
-  cooldownTime: 0
+  idNum: 2
+  id: axe
+  cooldownTime: 0.75
   itemMesh: {fileID: -8287839383430266118, guid: ca793d6c884cc7042959da5b546a1c02,
     type: 3}
   icon: {fileID: 21300000, guid: c48bd551177a1af46b1dfaefc1b4d042, type: 3}

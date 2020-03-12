@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7bf4685737976442be10707cef8738b, type: 3}
   m_Name: Slingshot
   m_EditorClassIdentifier: 
-  ID: slingshot
+  idNum: 1
+  id: slingshot
   cooldownTime: 1
   itemMesh: {fileID: 4068373912626513877, guid: 225f9df2822e0654e91f8f16f45e54fb,
     type: 3}

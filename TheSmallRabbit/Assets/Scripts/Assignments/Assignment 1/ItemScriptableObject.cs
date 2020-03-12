@@ -6,7 +6,8 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemScriptableObject", order = 1)]
 public class ItemScriptableObject : ScriptableObject
 {
-    public string ID;
+    public int idNum;
+    public string id;
     public float cooldownTime;
     public Mesh itemMesh;
     public Sprite icon;
