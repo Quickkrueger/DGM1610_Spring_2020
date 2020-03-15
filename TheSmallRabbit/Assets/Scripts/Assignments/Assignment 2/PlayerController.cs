@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        if (Input.GetButton("Fire1") && equippedItem != null)
+        if ((Input.GetButton("Fire1") && equippedItem != null) || (Input.GetButtonUp("Fire1") && equippedItem != null))
         {
             UseItem();
         }

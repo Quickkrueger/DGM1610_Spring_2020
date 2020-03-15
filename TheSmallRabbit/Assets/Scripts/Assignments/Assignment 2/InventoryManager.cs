@@ -82,32 +82,60 @@ public class InventoryManager : MonoBehaviour
         return ItemToEquip();
     }
 
-    public void UseItem(GameObject owner)
+    public void UseItem(GameObject owner) //TODO: Transfer UseItem functionality to ToggleableItem and RepeatingItem functions
     {
-        if (canFire)
-        {
-            owner.GetComponent<Animator>().SetBool("UseItem", true);
-            canFire = false;
-            if (items[equippedSlot] != null && items[equippedSlot].projectilePrefab != null) //TODO: Fix bobber duplication
-            {
-                GameObject projectile = Instantiate(items[equippedSlot].projectilePrefab, owner.transform.position + owner.transform.forward, owner.transform.rotation);
-                projectile.GetComponent<Projectile>().SetOwner(owner);
-                owner.GetComponent<Animator>().SetBool("UseItem", false);
-            }
-            if (!items[equippedSlot].toggles)
-            {
-                CoolDown();
-            }
-            else
-            {
 
-            }
-        }
-        else if(items[equippedSlot].toggles && Input.GetButtonUp("Fire1"))
+        if (items[equippedSlot] != null && !items[equippedSlot].toggles)
         {
-            canFire = true;
+            RepeatingItem(owner);
+        }
+        else if (items[equippedSlot] != null && items[equippedSlot].toggles)
+        {
+            ToggleableItem(owner);
         }
         //Play item specific animation
     }
 
+
+    private void ToggleableItem(GameObject owner)
+    {
+        if (canFire && Input.GetButtonDown("Fire1")) //TODO: Fix bobber duplication
+        {
+            CreateProjectile(owner);
+        }
+        else if(!canFire && Input.GetButtonDown("Fire1"))
+        {
+            owner.GetComponent<Animator>().SetBool("UseItem", true);
+            canFire = true;
+        }
+        else
+        {
+            owner.GetComponent<Animator>().SetBool("UseItem", false);
+        }
+    }
+
+    private void RepeatingItem(GameObject owner)
+    {
+        if (canFire) //TODO: Fix bobber duplication
+        {
+            CreateProjectile(owner);
+            CoolDown();
+        }
+        else
+        {
+            owner.GetComponent<Animator>().SetBool("UseItem", false);
+        }
+                
+    }
+
+    private void CreateProjectile(GameObject owner)
+    {
+        owner.GetComponent<Animator>().SetBool("UseItem", true);
+        canFire = false;
+        if (items[equippedSlot].projectilePrefab != null)
+        {
+            GameObject projectile = Instantiate(items[equippedSlot].projectilePrefab, owner.transform.position + owner.transform.forward, owner.transform.rotation);
+            projectile.GetComponent<Projectile>().SetOwner(owner);
+        }
+    }
 }
