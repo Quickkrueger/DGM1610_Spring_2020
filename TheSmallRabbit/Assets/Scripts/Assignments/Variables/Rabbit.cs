@@ -13,6 +13,7 @@ public class Rabbit : MonoBehaviour
     private bool jumping = false;
     public float jumpPower = 10;
     public float moveSpeed;
+    private float moveSpeedMultiplier = 1.0f;
     public float rotateSpeed = 2;
     private float yaw = 0.0f;
     private bool isCaught = false;
@@ -73,6 +74,8 @@ public class Rabbit : MonoBehaviour
                 Burrow();
             }
         }
+
+        moveSpeedMultiplier = GameManager.instance.GetHungerRatio();
     }
 
     void InitializeRabbit()
@@ -145,7 +148,7 @@ public class Rabbit : MonoBehaviour
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
 
-        rb.velocity = transform.forward * verticalMove * moveSpeed * Time.deltaTime + new Vector3(0f, rb.velocity.y, 0f) + transform.right * horizontalMove * moveSpeed * Time.deltaTime;
+        rb.velocity = transform.forward * verticalMove * moveSpeed * moveSpeedMultiplier * Time.deltaTime + new Vector3(0f, rb.velocity.y, 0f) + transform.right * horizontalMove * moveSpeed * moveSpeedMultiplier * Time.deltaTime;
     }
 
     private void Rotate()

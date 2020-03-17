@@ -62,6 +62,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public float GetHungerRatio()
+    {
+        return (float)currentHunger/(float)maxHunger;
+    }
+
     private void GameOver()
     {
         StartCoroutine(FadeInGameOver());
