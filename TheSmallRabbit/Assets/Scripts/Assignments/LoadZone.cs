@@ -6,7 +6,7 @@ public class LoadZone : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    Transform destination;
+    public Transform destination;
 
     void Start()
     {
