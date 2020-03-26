@@ -13,11 +13,23 @@ public class InventoryManager : MonoBehaviour
     public Image[] icons;
     public GameObject hotbar;
 
+    public Text goldText;
+    private int goldNum = 10;
+
     void Start()
     {
         instance = GetComponent<InventoryManager>();
         items = new ItemScriptableObject[10];
         ItemToEquip();
+        goldText.text = goldNum.ToString();
+    }
+
+    private void Update()
+    {
+        if (goldText.text != goldNum.ToString())
+        {
+            goldText.text = goldNum.ToString();
+        }
     }
 
     public void AddItemToInventory(ItemScriptableObject itemData)
@@ -137,5 +149,20 @@ public class InventoryManager : MonoBehaviour
             GameObject projectile = Instantiate(items[equippedSlot].projectilePrefab, owner.transform.position + owner.transform.forward, owner.transform.rotation);
             projectile.GetComponent<Projectile>().SetOwner(owner);
         }
+    }
+
+    public void AddGold(int amount)
+    {
+        goldNum += amount;
+    }
+
+    public int CheckGold()
+    {
+        return goldNum;
+    }
+
+    public void RemoveGold(int amount)
+    {
+        goldNum -= amount;
     }
 }
