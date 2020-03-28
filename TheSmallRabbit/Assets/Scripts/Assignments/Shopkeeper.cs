@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shopkeeper : MonoBehaviour
+public class Shopkeeper : NPC
 {
+    public GameObject[] wares;
     // Start is called before the first frame update
     void Start()
     {

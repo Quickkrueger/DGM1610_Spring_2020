@@ -6,6 +6,8 @@ public class Dialogue
 {
     private List<string> lines;
     private int currentLineIndex;
+    private bool hasLoopingDialogue = false;
+    private int loopStartIndex = 0;
 
     Dialogue()
     {
@@ -19,6 +21,12 @@ public class Dialogue
         {
             return lines[currentLineIndex];
         }
+        else if (hasLoopingDialogue)
+        {
+            currentLineIndex = loopStartIndex;
+            return lines[currentLineIndex];
+        }
+
         return "";
     }
 
@@ -30,5 +38,10 @@ public class Dialogue
     public void LoadDialogue(string characterName)
     {
 
+    }
+
+    public void ResetDialogue()
+    {
+        currentLineIndex = 0;
     }
 }
