@@ -8,8 +8,8 @@ public class Shopkeeper : NPC
     private GameObject[] wareInstances;
     public GameObject shopItemPrefab;
     public float waresYSpawnValue;
-    public float waresSpacing;
     private Vector3 currentItemPosition;
+    public Transform shopEdge;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,16 +25,17 @@ public class Shopkeeper : NPC
 
     void InitializeWares()
     {
-        currentItemPosition = transform.position;
+        currentItemPosition = transform.position + Vector3.right * 2;
+        float itemDistance = (shopEdge.position.x - (transform.position.x + 2)) / (wares.Length - 1);
         for (int i = 0; i < wares.Length; i++)
         {
-            currentItemPosition += Vector3.right * waresSpacing;
             wareInstances[i] = Instantiate(shopItemPrefab, currentItemPosition, shopItemPrefab.transform.rotation);
             wareInstances[i].GetComponent<ShopItem>().InitializeItem(wares[i]);
             MeshCollider newCollider = wareInstances[i].AddComponent<MeshCollider>();
             newCollider.convex = true;
             newCollider.isTrigger = true;
-            
-        }
+            currentItemPosition += Vector3.right * itemDistance;
+
+    }
     }
 }
