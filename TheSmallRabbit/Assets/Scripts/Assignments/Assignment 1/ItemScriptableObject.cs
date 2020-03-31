@@ -8,6 +8,7 @@ public class ItemScriptableObject : ScriptableObject
 {
     public int idNum;
     public string id;
+    public int shopCost;
     public float cooldownTime;
     public Mesh itemMesh;
     public Sprite icon;

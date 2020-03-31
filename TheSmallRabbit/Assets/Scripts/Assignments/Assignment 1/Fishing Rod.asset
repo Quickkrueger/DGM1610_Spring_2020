@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idNum: 0
   id: fishing_rod
+  shopCost: 2
   cooldownTime: 0.5
   itemMesh: {fileID: 7206472575975855354, guid: 0bb91fcae1751664bb04e24293373c93,
     type: 3}

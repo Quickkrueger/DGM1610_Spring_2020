@@ -6,13 +6,11 @@ using UnityEngine.UI;
 public class ShopItem : Item
 {
     // Start is called before the first frame update
-    public int cost = 0;
     public GameObject ItemUI;
 
     void Start()
     {
-        ItemUI.transform.GetChild(0).GetComponent<Text>().text = itemData.id;
-        ItemUI.transform.GetChild(1).GetComponent<Text>().text = cost.ToString();
+
     }
 
     // Update is called once per frame
@@ -23,9 +21,9 @@ public class ShopItem : Item
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && InventoryManager.instance.CheckGold() >= cost)
+        if (other.tag == "Player" && InventoryManager.instance.CheckGold() >= itemData.shopCost)
         {
-            InventoryManager.instance.RemoveGold(cost);
+            InventoryManager.instance.RemoveGold(itemData.shopCost);
             base.OnTriggerEnter(other);
         }
     }
@@ -33,5 +31,12 @@ public class ShopItem : Item
     protected override void PickupEffect()
     {
         base.PickupEffect();
+    }
+
+    public override void InitializeItem(ItemScriptableObject itemDat)
+    {
+        base.InitializeItem(itemDat);
+        ItemUI.transform.GetChild(0).GetComponent<Text>().text = itemData.id;
+        ItemUI.transform.GetChild(1).GetComponent<Text>().text = itemData.shopCost.ToString();
     }
 }

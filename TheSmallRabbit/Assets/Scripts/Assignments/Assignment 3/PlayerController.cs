@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool jumping = false; // Like grounded but the opposite
+    public bool jumping = false; // Like grounded but the opposite
     public float moveSpeed;
     public float rotateSpeed = 2;
     public float jumpPower = 10;
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Ground" && jumping)
         {

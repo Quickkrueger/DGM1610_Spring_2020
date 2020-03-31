@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Item : Pickup
 {
-    public ItemScriptableObject itemData;
+    protected ItemScriptableObject itemData;
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<MeshFilter>().mesh = itemData.itemMesh;
+        if (itemData != null)
+        {
+            InitializeItem(itemData);
+        }
     }
 
     protected override void PickupEffect()
@@ -16,4 +19,11 @@ public class Item : Pickup
         InventoryManager.instance.AddItemToInventory(itemData);
         Destroy(gameObject);
     }
+
+    public virtual void InitializeItem(ItemScriptableObject itemDat)
+    {
+        itemData = itemDat;
+        GetComponent<MeshFilter>().mesh = itemData.itemMesh;
+    }
+
 }
