@@ -3,18 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Burrow
-  - Hawk
-  - FlightPath
-  - Rabbit
-  - Ground
-  - Obstacle
-  - Food
-  - Item
-  - Enemy
-  - SpawnPoint
-  - NPC
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -24,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - Post Process
-  - NoShadows
+  - 
+  - 
   - 
   - 
   - 
