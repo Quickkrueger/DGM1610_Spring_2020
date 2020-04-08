@@ -9,16 +9,28 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed;
     public float jumpPower;
+    public Color[] hatColors;
 
     private int thisPlayerNum;
     private bool grounded = true;
-    private bool usingMouse = true;
+    private bool usingMouse;
     private Rigidbody rb;
     void Start()
     {
         totalPlayerNum++;
         thisPlayerNum = totalPlayerNum;
+
+        if(thisPlayerNum == 1)
+        {
+            usingMouse = true;
+        }
+        else
+        {
+            usingMouse = false;
+        }
+
         rb = GetComponent<Rigidbody>();
+        transform.GetChild(0).GetComponent<MeshRenderer>().material.color = hatColors[thisPlayerNum - 1];
     }
 
     // Update is called once per frame
@@ -56,12 +68,14 @@ public class PlayerController : MonoBehaviour
         if (usingMouse) {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = mousePos.y;
-            mousePos.y = transform.position.y;
+            //mousePos.y = transform.position.y;
+            mousePos.y = 0;
 
             Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
             objectPos.z = objectPos.y;
             objectPos.y = transform.position.y;
-            transform.rotation = Quaternion.LookRotation(mousePos - objectPos);
+            // transform.rotation = Quaternion.LookRotation(mousePos - objectPos);
+            transform.LookAt(mousePos - objectPos);
         }
         else if(!usingMouse && (Mathf.Abs(Input.GetAxis("P" + thisPlayerNum + " Joystick X")) >= 0.05f || Mathf.Abs(Input.GetAxis("P" + thisPlayerNum + " Joystick Y")) >= 0.05f))
         {
