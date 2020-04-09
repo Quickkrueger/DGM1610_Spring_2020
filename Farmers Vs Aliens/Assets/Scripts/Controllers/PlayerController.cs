@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetButtonDown("P" + thisPlayerNum + " Jump") && grounded)
         {
@@ -68,14 +68,14 @@ public class PlayerController : MonoBehaviour
         if (usingMouse) {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = mousePos.y;
-            //mousePos.y = transform.position.y;
-            mousePos.y = 0;
+            mousePos.y = transform.position.y;
+            //mousePos.y = 0;
 
             Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
             objectPos.z = objectPos.y;
             objectPos.y = transform.position.y;
-            // transform.rotation = Quaternion.LookRotation(mousePos - objectPos);
-            transform.LookAt(mousePos - objectPos);
+            transform.rotation = Quaternion.LookRotation(mousePos - objectPos);
+            //transform.LookAt(mousePos - objectPos);
         }
         else if(!usingMouse && (Mathf.Abs(Input.GetAxis("P" + thisPlayerNum + " Joystick X")) >= 0.05f || Mathf.Abs(Input.GetAxis("P" + thisPlayerNum + " Joystick Y")) >= 0.05f))
         {
