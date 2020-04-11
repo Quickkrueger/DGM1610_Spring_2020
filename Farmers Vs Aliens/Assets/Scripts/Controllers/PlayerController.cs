@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
         totalPlayerNum++;
         thisPlayerNum = totalPlayerNum;
 
-        if(thisPlayerNum == 1)
+        if (thisPlayerNum == 1)
         {
             usingMouse = true;
         }
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         }
 
         rb = GetComponent<Rigidbody>();
-        transform.GetChild(0).GetComponent<MeshRenderer>().material.color = hatColors[thisPlayerNum - 1];
+        transform.GetChild(0).GetComponent<MeshRenderer>().material.SetColor("_BaseColor", hatColors[thisPlayerNum - 1]);
     }
 
     // Update is called once per frame

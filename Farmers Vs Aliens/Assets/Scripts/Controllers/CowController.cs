@@ -17,6 +17,8 @@ public class CowController : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTextureOffset = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
+        transform.GetChild(1).GetComponent<MeshRenderer>().material.mainTextureOffset = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
     }
 
     // Update is called once per frame
