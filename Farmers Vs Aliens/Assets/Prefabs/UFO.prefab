@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2061602191
 Transform:
   m_ObjectHideFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061602190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.48, y: -1.19, z: 0}
+  m_LocalPosition: {x: 0.55, y: -1.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8406721678104468331}
@@ -17562,7 +17562,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8406721676853960750}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -17641,7 +17641,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8406721677911639349}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -17724,6 +17724,10 @@ MonoBehaviour:
   abductionSpeed: 0.5
   swayMultiplier: 0.1
   abductionBeam: {fileID: 2061602190}
+  glowingSphere: {fileID: 8406721677911639349}
+  Abducting: {r: 1, g: 0.13711214, b: 0, a: 1}
+  Searching: {r: 0, g: 0.46715352, b: 1, a: 1}
+  Abducted: {r: 0.06549895, g: 1, b: 0, a: 1}
   marginOfError: 0.1
 --- !u!54 &849792280
 Rigidbody:

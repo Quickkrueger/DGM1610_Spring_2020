@@ -7,8 +7,12 @@ public class UfoController : MonoBehaviour
 {
     public float speed;
     public float abductionSpeed;
-    public float swayMultiplier = 0.05f;
+    public float swayMultiplier;
     public GameObject abductionBeam;
+    public GameObject glowingSphere;
+    public Color Abducting;
+    public Color Searching;
+    public Color Abducted;
     private GameObject target;
     [Range(0.0f, 1.0f)]
     public float marginOfError;
@@ -45,6 +49,7 @@ public class UfoController : MonoBehaviour
             else
             {
                 AcquireTarget();
+                glowingSphere.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Searching);
             }
         }
         else
@@ -74,7 +79,8 @@ public class UfoController : MonoBehaviour
     {
 
         abductionBeam.SetActive(true);
-        GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        glowingSphere.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Abducting);
+        transform.GetChild(0).GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         target.GetComponent<CowController>().enabled = false;
         target.GetComponent<NavMeshAgent>().enabled = false;
         target.transform.position += transform.up * Time.deltaTime * abductionSpeed;
@@ -88,7 +94,8 @@ public class UfoController : MonoBehaviour
         {
             Destroy(other.gameObject);
             abductionBeam.SetActive(false);
-            GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            transform.GetChild(0).GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            glowingSphere.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Abducted);
         }
     }
 
