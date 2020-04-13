@@ -19,6 +19,7 @@ public class CowController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTextureOffset = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
         transform.GetChild(1).GetComponent<MeshRenderer>().material.mainTextureOffset = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
+        
     }
 
     // Update is called once per frame
@@ -26,8 +27,8 @@ public class CowController : MonoBehaviour
     {
         if (!actionInProgress)
         {
-            int wander = Random.Range(0, 5);
-            wandering = wander == 4;
+            int wander = Random.Range(0, 2);
+            wandering = wander == 1;
             actionTimer = Random.Range(5.0f, 10.0f);
         }
 
@@ -64,4 +65,5 @@ public class CowController : MonoBehaviour
 
         return navHit.position;
     }
+    
 }

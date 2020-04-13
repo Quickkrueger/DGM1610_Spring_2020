@@ -118,7 +118,17 @@ public class UfoController : MonoBehaviour
 
     private void Leave()
     {
-        transform.position += transform.up;
+        transform.position += transform.up * speed * Time.deltaTime;
+    }
+
+    public void UfoExplode()
+    {
+        if (LockedOnTarget())
+        {
+            target.GetComponent<CowController>().enabled = true;
+            target.GetComponent<NavMeshAgent>().enabled = true;
+        }
+        Destroy(gameObject);
     }
 
 

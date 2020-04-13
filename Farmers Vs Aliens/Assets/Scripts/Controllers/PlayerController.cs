@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpPower;
     public Color[] hatColors;
+    public GameObject item;
+    public ItemScriptableObject currentItem;
 
     private int thisPlayerNum;
     private bool grounded = true;
@@ -39,6 +41,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("P" + thisPlayerNum + " Jump") && grounded)
         {
             Jump();
+        }
+
+        if(currentItem != null)
+        {
+            if(item.transform.childCount <= 0)
+            {
+                GameObject newItem = Instantiate(currentItem.model);
+                newItem.transform.parent = item.transform;
+                newItem.transform.position = item.transform.position;
+            }
+            LookForTarget();
         }
 
         Move();
@@ -86,5 +99,29 @@ public class PlayerController : MonoBehaviour
             transform.LookAt(joystickPos + transform.position);
         }
         
+    }
+
+    private void LookForTarget()
+    {
+        Ray ray;
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject.tag.Equals("Enemy"))
+            {
+                PointWeapon(hit.collider.gameObject.transform);
+            }
+            else
+            {
+                item.transform.rotation = gameObject.transform.rotation;
+            }
+        }
+
+    }
+
+    private void PointWeapon(Transform target)
+    {
+        item.transform.LookAt(target);
     }
 }
