@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float jumpPower;
     public Color[] hatColors;
     public GameObject item;
+    public GameObject bulletPrefab;
     public ItemScriptableObject currentItem;
 
     private int thisPlayerNum;
@@ -52,6 +53,11 @@ public class PlayerController : MonoBehaviour
                 newItem.transform.position = item.transform.position;
             }
             LookForTarget();
+        }
+
+        if(Input.GetButtonDown("P" + thisPlayerNum + " Fire1") && currentItem != null)
+        {
+            Fire();
         }
 
         Move();
@@ -123,5 +129,14 @@ public class PlayerController : MonoBehaviour
     private void PointWeapon(Transform target)
     {
         item.transform.LookAt(target);
+    }
+
+    private void Fire()
+    {
+        for(int i = 0; i < currentItem.numProjectile; i++)
+        {
+            GameObject currentBullet = Instantiate(bulletPrefab, item.transform.position + item.transform.forward, item.transform.rotation);
+            currentBullet.GetComponent<BulletController>().InitializeBullet(currentItem.hasSpread, currentItem.spreadRange, currentItem.projectileSpeed);
+        }
     }
 }

@@ -8,6 +8,8 @@ public class UfoController : MonoBehaviour
     public float speed;
     public float abductionSpeed;
     public float swayMultiplier;
+    public int maxHealth = 10;
+    private int health;
     public GameObject abductionBeam;
     public GameObject glowingSphere;
     public Color Abducting;
@@ -22,13 +24,8 @@ public class UfoController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
         AcquireTarget();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void FixedUpdate()
@@ -90,7 +87,7 @@ public class UfoController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Cow")
+        if (other.tag == "Cow")
         {
             Destroy(other.gameObject);
             abductionBeam.SetActive(false);
@@ -129,6 +126,15 @@ public class UfoController : MonoBehaviour
             target.GetComponent<NavMeshAgent>().enabled = true;
         }
         Destroy(gameObject);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            UfoExplode();
+        }
     }
 
 

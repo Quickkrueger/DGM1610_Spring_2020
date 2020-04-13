@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 301dfdc46090b104595ea6d596c2a347, type: 3}
-  m_Name: Shotgun
+  m_Name: AssaultRifle
   m_EditorClassIdentifier: 
-  idNum: 0
-  uiName: 
-  model: {fileID: 202652475016816276, guid: 1f412b93300d5104787d02f8d4ce080f, type: 3}
-  cooldownTime: 3
-  numProjectile: 8
-  projectileSpeed: 20
+  idNum: 1
+  name: Assault Rifle
+  model: {fileID: 0}
+  cooldownTime: 0.1
+  numProjectile: 1
   hasSpread: 1
-  spreadRange: 0.174
+  spreadRange: 0.01

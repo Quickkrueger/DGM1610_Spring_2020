@@ -6,9 +6,13 @@ using UnityEngine;
 public class ItemScriptableObject : ScriptableObject
 {
     public int idNum;
-    public string name;
+    public string uiName;
     public GameObject model;
     public float cooldownTime;
-    public GameObject projectilePrefab;
+    public int numProjectile;
+    public float projectileSpeed;
+    public bool hasSpread;
+    [Range(0f, 1f)]
+    public float spreadRange;
 
 }

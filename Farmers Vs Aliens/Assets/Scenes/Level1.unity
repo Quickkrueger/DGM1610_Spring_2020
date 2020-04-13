@@ -26207,6 +26207,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4892728124141488911, guid: 7cd0a5b4b2042484a9e0d6c7927997ed,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 6165863287199288062, guid: 68c6068c51dad4440883a1812ad4b177,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cd0a5b4b2042484a9e0d6c7927997ed, type: 3}
 --- !u!1001 &8406721678395627133
@@ -26303,6 +26309,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406721678104468330, guid: 310765e4cd5e19f4397ae5d3c7f57abe,
+        type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 310765e4cd5e19f4397ae5d3c7f57abe, type: 3}
