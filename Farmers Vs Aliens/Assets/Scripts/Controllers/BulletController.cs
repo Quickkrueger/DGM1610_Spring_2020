@@ -63,6 +63,7 @@ public class BulletController : MonoBehaviour
         if(other.tag == "Enemy")
         {
             other.GetComponentInParent<UfoController>().TakeDamage(damage);
+            Destroy(gameObject);
         }
     }
 }

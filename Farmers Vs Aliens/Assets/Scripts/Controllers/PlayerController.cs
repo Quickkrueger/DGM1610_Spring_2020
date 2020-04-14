@@ -139,4 +139,20 @@ public class PlayerController : MonoBehaviour
             currentBullet.GetComponent<BulletController>().InitializeBullet(currentItem.hasSpread, currentItem.spreadRange, currentItem.projectileSpeed);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Ground" && !grounded)
+        {
+            grounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground" && grounded)
+        {
+            grounded = false;
+        }
+    }
 }

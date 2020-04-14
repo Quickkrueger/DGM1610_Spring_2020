@@ -124,6 +124,8 @@ public class UfoController : MonoBehaviour
         {
             target.GetComponent<CowController>().enabled = true;
             target.GetComponent<NavMeshAgent>().enabled = true;
+            target.transform.localScale = new Vector3(1f,1f,1f);
+            target.transform.position = new Vector3(target.transform.position.x, 0.75f, target.transform.position.z);
         }
         Destroy(gameObject);
     }
