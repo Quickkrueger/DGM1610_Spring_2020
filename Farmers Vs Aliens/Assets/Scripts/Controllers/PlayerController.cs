@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public GameObject item;
     public GameObject bulletPrefab;
     public ItemScriptableObject currentItem;
+    public int maxHealth;
+    private int currentHealth;
 
     private int thisPlayerNum;
     private bool grounded = true;
@@ -36,17 +38,16 @@ public class PlayerController : MonoBehaviour
         transform.GetChild(0).GetComponent<MeshRenderer>().material.SetColor("_BaseColor", hatColors[thisPlayerNum - 1]);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
         if (Input.GetButtonDown("P" + thisPlayerNum + " Jump") && grounded)
         {
             Jump();
         }
 
-        if(currentItem != null)
+        if (currentItem != null)
         {
-            if(item.transform.childCount <= 0)
+            if (item.transform.childCount <= 0)
             {
                 GameObject newItem = Instantiate(currentItem.model);
                 newItem.transform.parent = item.transform;
@@ -55,11 +56,15 @@ public class PlayerController : MonoBehaviour
             LookForTarget();
         }
 
-        if(Input.GetButtonDown("P" + thisPlayerNum + " Fire1") && currentItem != null)
+        if (Input.GetButtonDown("P" + thisPlayerNum + " Fire1") && currentItem != null)
         {
             Fire();
         }
+    }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         Move();
     }
 

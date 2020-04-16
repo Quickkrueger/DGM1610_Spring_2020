@@ -25,7 +25,6 @@ public class UfoController : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        AcquireTarget();
     }
 
     private void FixedUpdate()
@@ -89,7 +88,9 @@ public class UfoController : MonoBehaviour
     {
         if (other.tag == "Cow")
         {
-            Destroy(other.gameObject);
+            SpawnManager._instance.DestroyCow(other.gameObject);
+            target = null;
+            UIManager._instance.UpdateCowCounter();
             abductionBeam.SetActive(false);
             transform.GetChild(0).GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
             glowingSphere.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Abducted);
@@ -98,10 +99,12 @@ public class UfoController : MonoBehaviour
 
     private void AcquireTarget()
     {
-        GameObject[] potentialTargets = GameObject.FindGameObjectsWithTag("Cow");
+        GameObject[] potentialTargets = SpawnManager._instance.ProvideTargetList();
+
         if (potentialTargets.Length > 1)
         {
             target = potentialTargets[Random.Range(0, potentialTargets.Length)];
+            target.GetComponent<CowController>().Claim();
         }
         else if(potentialTargets.Length == 1)
         {
@@ -109,7 +112,19 @@ public class UfoController : MonoBehaviour
         }
         else
         {
-            timeToLeave = true;
+            if (SpawnManager._instance.CowsRemaining() > 0)
+            {
+
+            }
+            else
+            {
+                timeToLeave = true;
+            }
+        }
+
+        if(target != null)
+        {
+            target.GetComponent<CowController>().Claim();
         }
     }
 
@@ -120,20 +135,23 @@ public class UfoController : MonoBehaviour
 
     public void UfoExplode()
     {
-        if (LockedOnTarget())
+        if (target != null)
         {
+
+            target.transform.localScale = new Vector3(1f, 1f, 1f);
+            target.transform.position = new Vector3(target.transform.position.x, 0.75f, target.transform.position.z);
             target.GetComponent<CowController>().enabled = true;
             target.GetComponent<NavMeshAgent>().enabled = true;
-            target.transform.localScale = new Vector3(1f,1f,1f);
-            target.transform.position = new Vector3(target.transform.position.x, 0.75f, target.transform.position.z);
+            target.GetComponent<CowController>().UnClaim();
         }
+        SpawnManager._instance.EnemyDestroyed();
         Destroy(gameObject);
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if(health <= 0)
+        if(health == 0)
         {
             UfoExplode();
         }

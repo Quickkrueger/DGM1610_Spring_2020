@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class CowController : MonoBehaviour
 {
     public float wanderRadius;
+    private bool claimed;
     private float actionTimer;
-    
     private NavMeshAgent agent;
     private float timer = 0;
     private bool wandering = false;
@@ -65,5 +65,20 @@ public class CowController : MonoBehaviour
 
         return navHit.position;
     }
-    
+
+    public void Claim()
+    {
+        claimed = true;
+    }
+
+    public void UnClaim()
+    {
+        claimed = false;
+    }
+
+    public bool IsClaimed()
+    {
+        return claimed;
+    }
+
 }
