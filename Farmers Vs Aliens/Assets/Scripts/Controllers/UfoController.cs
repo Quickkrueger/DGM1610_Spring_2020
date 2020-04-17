@@ -18,6 +18,9 @@ public class UfoController : MonoBehaviour
     private GameObject target;
     [Range(0.0f, 1.0f)]
     public float marginOfError;
+    public float attackCooldown;
+    private float canAttack;
+    public float projectile;
     private bool timeToLeave = false;
 
 
@@ -31,7 +34,7 @@ public class UfoController : MonoBehaviour
     {
         if (!timeToLeave)
         {
-            if (target != null)
+            if (target != null && target.tag == "Cow")
             {
                 if (!LockedOnTarget())
                 {
@@ -40,6 +43,17 @@ public class UfoController : MonoBehaviour
                 else
                 {
                     Abduct();
+                }
+            }
+            else if (target != null && target.tag == "Player" && SpawnManager._instance.CowsRemaining() > 0)
+            {
+                if (!LockedOnTarget())
+                {
+                    MoveTowardTarget();
+                }
+                else
+                {
+
                 }
             }
             else
@@ -93,7 +107,6 @@ public class UfoController : MonoBehaviour
             UIManager._instance.UpdateCowCounter();
             abductionBeam.SetActive(false);
             transform.GetChild(0).GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-            glowingSphere.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Abducted);
         }
     }
 
@@ -114,7 +127,8 @@ public class UfoController : MonoBehaviour
         {
             if (SpawnManager._instance.CowsRemaining() > 0)
             {
-
+                target = GameManager._instance.GetPlayer();
+                glowingSphere.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Abducted);
             }
             else
             {
@@ -122,7 +136,7 @@ public class UfoController : MonoBehaviour
             }
         }
 
-        if(target != null)
+        if(target != null && target.tag == "Cow")
         {
             target.GetComponent<CowController>().Claim();
         }
@@ -135,7 +149,7 @@ public class UfoController : MonoBehaviour
 
     public void UfoExplode()
     {
-        if (target != null)
+        if (target != null && target.tag == "Cow")
         {
 
             target.transform.localScale = new Vector3(1f, 1f, 1f);

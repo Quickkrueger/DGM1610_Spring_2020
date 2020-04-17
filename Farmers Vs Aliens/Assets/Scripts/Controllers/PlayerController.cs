@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         transform.GetChild(0).GetComponent<MeshRenderer>().material.SetColor("_BaseColor", hatColors[thisPlayerNum - 1]);
+        UIManager._instance.initializeHealth(maxHealth);
     }
 
     private void Update()
@@ -159,5 +160,11 @@ public class PlayerController : MonoBehaviour
         {
             grounded = false;
         }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        UIManager._instance.SetHealth(currentHealth);
     }
 }

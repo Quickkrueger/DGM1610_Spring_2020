@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager _instance;
     public Text numCows;
+
+    public Slider healthBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,17 @@ public class UIManager : MonoBehaviour
     {
 
         numCows.text = SpawnManager._instance.CowsRemaining().ToString();
+    }
+
+    public void initializeHealth(int maxHealth)
+    {
+        healthBar.maxValue = maxHealth;
+        healthBar.value = maxHealth;
+    }
+
+    public void SetHealth(int health)
+    {
+        healthBar.value = health;
     }
 
 }
