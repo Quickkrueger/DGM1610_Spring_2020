@@ -10,15 +10,16 @@ public class UIManager : MonoBehaviour
 
     public Slider healthBar;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+
         if (_instance == null)
         {
             _instance = this;
         }
         else
         {
-            _instance = null;
+            Destroy(gameObject);
         }
 
     }
@@ -35,7 +36,7 @@ public class UIManager : MonoBehaviour
         numCows.text = SpawnManager._instance.CowsRemaining().ToString();
     }
 
-    public void initializeHealth(int maxHealth)
+    public void InitializeHealth(int maxHealth)
     {
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;

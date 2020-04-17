@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: AssaultRifle
   m_EditorClassIdentifier: 
   idNum: 1
-  name: Assault Rifle
+  uiName: Assault Rifle
   model: {fileID: 0}
   cooldownTime: 0.1
   numProjectile: 1
+  projectileSpeed: 0
   hasSpread: 1
   spreadRange: 0.01

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   idNum: 0
-  uiName: 
+  uiName: Shotgun
   model: {fileID: 202652475016816276, guid: 1f412b93300d5104787d02f8d4ce080f, type: 3}
   cooldownTime: 3
   numProjectile: 8

@@ -13,8 +13,9 @@ public class SpawnManager : MonoBehaviour
     public Vector3 spawnBoundaryTopRight;
     public static SpawnManager _instance;
 
-    void Start()
+    private void Awake()
     {
+
         if (_instance == null)
         {
             _instance = this;
@@ -23,6 +24,10 @@ public class SpawnManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
         cows = GameObject.FindGameObjectsWithTag("Cow");
         numCows = cows.Length;
     }

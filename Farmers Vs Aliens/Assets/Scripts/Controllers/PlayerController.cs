@@ -36,8 +36,10 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         transform.GetChild(0).GetComponent<MeshRenderer>().material.SetColor("_BaseColor", hatColors[thisPlayerNum - 1]);
-        UIManager._instance.initializeHealth(maxHealth);
+        UIManager._instance.InitializeHealth(maxHealth);
     }
+
+    
 
     private void Update()
     {
@@ -53,7 +55,9 @@ public class PlayerController : MonoBehaviour
                 GameObject newItem = Instantiate(currentItem.model);
                 newItem.transform.parent = item.transform;
                 newItem.transform.position = item.transform.position;
+                newItem.transform.localRotation = currentItem.model.transform.rotation;
             }
+
             LookForTarget();
         }
 

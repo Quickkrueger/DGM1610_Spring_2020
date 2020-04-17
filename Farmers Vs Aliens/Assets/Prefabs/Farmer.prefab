@@ -243,4 +243,7 @@ MonoBehaviour:
   - {r: 0.6981132, g: 0.63574016, b: 0.16794232, a: 1}
   - {r: 0.26051843, g: 0.6037736, b: 0.24207903, a: 1}
   item: {fileID: 3160699143886268026}
+  bulletPrefab: {fileID: 6165863287199288062, guid: 68c6068c51dad4440883a1812ad4b177,
+    type: 3}
   currentItem: {fileID: 11400000, guid: e55e1ed243158c948bbf95409bf14c12, type: 2}
+  maxHealth: 10
