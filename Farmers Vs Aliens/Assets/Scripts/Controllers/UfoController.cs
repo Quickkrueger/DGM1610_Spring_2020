@@ -19,8 +19,8 @@ public class UfoController : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float marginOfError;
     public float attackCooldown;
-    private float canAttack;
-    public float projectile;
+    private bool canAttack = true;
+    public GameObject projectilePrefab;
     private bool timeToLeave = false;
 
 
@@ -36,7 +36,7 @@ public class UfoController : MonoBehaviour
         {
             if (target != null && target.tag == "Cow")
             {
-                if (!LockedOnTarget())
+                if (!LockedOnTarget(marginOfError))
                 {
                     MoveTowardTarget();
                 }
@@ -47,13 +47,24 @@ public class UfoController : MonoBehaviour
             }
             else if (target != null && target.tag == "Player" && SpawnManager._instance.CowsRemaining() > 0)
             {
-                if (!LockedOnTarget())
+                if (!LockedOnTarget(marginOfError + 5f))
                 {
                     MoveTowardTarget();
                 }
+                else if(!LockedOnTarget(marginOfError + 1))
+                {
+                    MoveTowardTarget();
+                    if (canAttack)
+                    {
+                        FireWeapon();
+                    }
+                }
                 else
                 {
-
+                    if (canAttack)
+                    {
+                        FireWeapon();
+                    }
                 }
             }
             else
@@ -75,10 +86,10 @@ public class UfoController : MonoBehaviour
         transform.position += transform.right * Mathf.Sin(Time.time * 3.14f) * swayMultiplier;
     }
 
-    private bool LockedOnTarget()
+    private bool LockedOnTarget(float distanceToLock)
     {
-        if(transform.position.x < target.transform.position.x + marginOfError && transform.position.x >= target.transform.position.x - marginOfError &&
-            transform.position.z < target.transform.position.z + marginOfError && transform.position.z >= target.transform.position.z - marginOfError)
+        if(transform.position.x < target.transform.position.x + distanceToLock && transform.position.x >= target.transform.position.x - distanceToLock &&
+            transform.position.z < target.transform.position.z + distanceToLock && transform.position.z >= target.transform.position.z - distanceToLock)
         {
             return true;
         }
@@ -171,5 +182,18 @@ public class UfoController : MonoBehaviour
         }
     }
 
+    private void FireWeapon()
+    {
+        canAttack = false;
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        projectile.transform.LookAt(target.transform.position);
+        StartCoroutine(CoolDown());
+    }
+
+    IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
 
 }

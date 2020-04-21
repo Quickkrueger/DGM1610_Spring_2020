@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         totalPlayerNum++;
         thisPlayerNum = totalPlayerNum;
+        currentHealth = maxHealth;
 
         if (thisPlayerNum == 1)
         {
@@ -166,7 +167,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         UIManager._instance.SetHealth(currentHealth);

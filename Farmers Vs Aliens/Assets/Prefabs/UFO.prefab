@@ -17730,6 +17730,9 @@ MonoBehaviour:
   Searching: {r: 0, g: 0.46715352, b: 1, a: 1}
   Abducted: {r: 0.06549895, g: 1, b: 0, a: 1}
   marginOfError: 0.1
+  attackCooldown: 0.2
+  projectilePrefab: {fileID: 8470951499072500008, guid: 15bfc32b1c2258345918866f89eeb753,
+    type: 3}
 --- !u!54 &849792280
 Rigidbody:
   m_ObjectHideFlags: 0

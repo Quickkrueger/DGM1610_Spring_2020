@@ -14,10 +14,13 @@ public class PlayerController : MonoBehaviour
     private ItemScriptableObject equippedItem;
     private bool firearmEquipped = false;
     private Rigidbody rb;
+    public int maxHealth;
+    private int health;
 
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
         rb = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
@@ -114,5 +117,13 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            health = 0;
+        }
+    }
 
 }
