@@ -5,7 +5,10 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public GameObject[] potentialDrops;
+    public int[] dropWeight;
     public GameObject explosionPrefab;
+
+    public int killValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,7 @@ public class EnemyController : MonoBehaviour
     {
         for(int i = 0; i < potentialDrops.Length; i++)
         {
-            if(Random.Range(0,2) == 1)
+            if(Random.Range(0,dropWeight[i]) == 0)
             {
                 Instantiate(potentialDrops[i], transform.position, transform.rotation);
             }

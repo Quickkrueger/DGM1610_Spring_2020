@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public Text numCows;
 
     public Slider healthBar;
+
+    public Text numMoney;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -45,6 +47,11 @@ public class UIManager : MonoBehaviour
     public void SetHealth(int health)
     {
         healthBar.value = health;
+    }
+
+    public void SetMoney(int money)
+    {
+        numMoney.text = money.ToString();
     }
 
 }

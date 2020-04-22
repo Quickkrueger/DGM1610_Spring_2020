@@ -15,13 +15,14 @@ public class PlayerController : MonoBehaviour
     public ItemScriptableObject currentItem;
     public int maxHealth;
     private int currentHealth;
-
+    private int money = 10;
     private int thisPlayerNum;
     private bool grounded = true;
     private bool usingMouse;
     private Rigidbody rb;
     void Start()
     {
+
         totalPlayerNum++;
         thisPlayerNum = totalPlayerNum;
         currentHealth = maxHealth;
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         transform.GetChild(0).GetComponent<MeshRenderer>().material.SetColor("_BaseColor", hatColors[thisPlayerNum - 1]);
         UIManager._instance.InitializeHealth(maxHealth);
+        UIManager._instance.SetMoney(money);
     }
 
     
@@ -182,6 +184,23 @@ public class PlayerController : MonoBehaviour
         currentHealth += change;
         currentHealth =  Mathf.Clamp(currentHealth, 0, maxHealth);
         UIManager._instance.SetHealth(currentHealth);
+    }
+
+    public void GainMoney(int money)
+    {
+        ChangeMoney(money);
+    }
+
+    public void LoseMoney(int money)
+    {
+        ChangeMoney(money * -1);
+    }
+
+    private void ChangeMoney(int change)
+    {
+        money += change;
+        money = Mathf.Clamp(money, 0, 10000000);
+        UIManager._instance.SetMoney(money);
     }
 
     public bool IsDead()
