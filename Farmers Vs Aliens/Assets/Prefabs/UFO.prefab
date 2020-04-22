@@ -17720,6 +17720,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2360f2e29bc464bbe1179fbeb1bfdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  potentialDrops:
+  - {fileID: 1779779891733201102, guid: 9be62363c1e030d4b97cfd811692db3e, type: 3}
+  explosionPrefab: {fileID: 0}
   speed: 5
   abductionSpeed: 0.5
   swayMultiplier: 0.1

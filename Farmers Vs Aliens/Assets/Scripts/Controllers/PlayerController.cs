@@ -169,7 +169,27 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        ChangeHealth(damage * -1);
+    }
+
+    public void GainHealth(int health)
+    {
+        ChangeHealth(health);
+    }
+
+    private void ChangeHealth(int change)
+    {
+        currentHealth += change;
+        currentHealth =  Mathf.Clamp(currentHealth, 0, maxHealth);
         UIManager._instance.SetHealth(currentHealth);
+    }
+
+    public bool IsDead()
+    {
+        if(currentHealth <= 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

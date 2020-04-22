@@ -83,6 +83,15 @@ public class SpawnManager : MonoBehaviour
         return targets;
     }
 
+    public bool NoMoreCows()
+    {
+        if(CowsRemaining() == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public void EnemyDestroyed()
     {
         numEnemies--;

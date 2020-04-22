@@ -29,11 +29,19 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (SpawnManager._instance.NoMoreCows() || player.GetComponent<PlayerController>().IsDead())
+        {
+            GameOver();
+        }
     }
 
     public GameObject GetPlayer()
     {
         return player;
+    }
+
+    public void GameOver()
+    {
+
     }
 }

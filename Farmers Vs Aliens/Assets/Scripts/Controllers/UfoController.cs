@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class UfoController : MonoBehaviour
+public class UfoController : EnemyController
 {
     public float speed;
     public float abductionSpeed;
@@ -158,7 +158,7 @@ public class UfoController : MonoBehaviour
         transform.position += transform.up * speed * Time.deltaTime;
     }
 
-    public void UfoExplode()
+    protected override void Explode()
     {
         if (target != null && target.tag == "Cow")
         {
@@ -170,7 +170,7 @@ public class UfoController : MonoBehaviour
             target.GetComponent<CowController>().UnClaim();
         }
         SpawnManager._instance.EnemyDestroyed();
-        Destroy(gameObject);
+        base.Explode();
     }
 
     public void TakeDamage(int damage)
@@ -178,7 +178,7 @@ public class UfoController : MonoBehaviour
         health -= damage;
         if(health == 0)
         {
-            UfoExplode();
+            Explode();
         }
     }
 
