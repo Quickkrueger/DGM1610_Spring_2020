@@ -14,12 +14,14 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     public ItemScriptableObject currentItem;
     public int maxHealth;
+
     private int currentHealth;
     private int money = 10;
     private int thisPlayerNum;
     private bool grounded = true;
     private bool usingMouse;
     private Rigidbody rb;
+
     void Start()
     {
 

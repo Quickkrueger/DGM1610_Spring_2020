@@ -22,6 +22,7 @@ public class UfoController : EnemyController
     private bool canAttack = true;
     public GameObject projectilePrefab;
     private bool timeToLeave = false;
+    private bool hasPointer = false;
 
 
     // Start is called before the first frame update
@@ -86,7 +87,7 @@ public class UfoController : EnemyController
         transform.position += transform.right * Mathf.Sin(Time.time * 3.14f) * swayMultiplier;
     }
 
-    private bool LockedOnTarget(float distanceToLock)
+    public bool LockedOnTarget(float distanceToLock)
     {
         if(transform.position.x < target.transform.position.x + distanceToLock && transform.position.x >= target.transform.position.x - distanceToLock &&
             transform.position.z < target.transform.position.z + distanceToLock && transform.position.z >= target.transform.position.z - distanceToLock)
@@ -98,7 +99,11 @@ public class UfoController : EnemyController
 
     private void Abduct()
     {
-
+        if (!hasPointer)
+        {
+            GameManager._instance.CreateUFOPointer(gameObject);
+            hasPointer = true;
+        }
         abductionBeam.SetActive(true);
         glowingSphere.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Abducting);
         transform.GetChild(0).GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
@@ -124,6 +129,7 @@ public class UfoController : EnemyController
     private void AcquireTarget()
     {
         GameObject[] potentialTargets = SpawnManager._instance.ProvideTargetList();
+        hasPointer = false;
 
         if (potentialTargets.Length > 1)
         {

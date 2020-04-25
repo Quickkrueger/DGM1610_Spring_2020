@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager _instance;
     private GameObject player;
+    public GameObject pointerPrefab;
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,6 +39,12 @@ public class GameManager : MonoBehaviour
     public GameObject GetPlayer()
     {
         return player;
+    }
+
+    public void CreateUFOPointer(GameObject ufo)
+    {
+        GameObject pointer = Instantiate(pointerPrefab, player.transform.position, player.transform.rotation);
+        pointer.transform.parent = player.transform;
     }
 
     public void GameOver()
