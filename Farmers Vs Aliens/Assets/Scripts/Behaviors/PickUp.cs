@@ -21,7 +21,11 @@ public class PickUp : MonoBehaviour
         if(other.tag == "Ground")
         {
             GetComponent<Rigidbody>().useGravity = false;
-            GetComponent<Collider>().isTrigger = true;
+            Collider[] colliders = GetComponentsInChildren<Collider>();
+            for(int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].isTrigger = true;
+            }
         }
 
         if(other.tag == "Player")

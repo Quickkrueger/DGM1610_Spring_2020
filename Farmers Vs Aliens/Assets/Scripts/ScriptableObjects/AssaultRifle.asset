@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idNum: 1
   uiName: Assault Rifle
-  model: {fileID: 0}
+  model: {fileID: 4478225385078102223, guid: b4d8b46853e3f3146a4e9189fb2c1fbb, type: 3}
+  gunSound: {fileID: 8300000, guid: a1422295bf18f1d44a6cac433e0d7aaa, type: 3}
   cooldownTime: 0.1
   numProjectile: 1
-  projectileSpeed: 0
+  projectileSpeed: 30
   hasSpread: 1
   spreadRange: 0.01

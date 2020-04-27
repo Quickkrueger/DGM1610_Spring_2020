@@ -17722,13 +17722,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potentialDrops:
   - {fileID: 1779779891733201102, guid: 9be62363c1e030d4b97cfd811692db3e, type: 3}
-  dropWeight: 05000000
+  - {fileID: 4622289944862146182, guid: 5306042dba2e4e144b6b3382ba334dee, type: 3}
+  - {fileID: 8376616051923954727, guid: 98b953affa4482b49ad61884c6693c4a, type: 3}
+  dropWeight: 050000000a0000000a000000
   explosionPrefab: {fileID: 0}
   killValue: 1
+  maxHealth: 10
   speed: 5
   abductionSpeed: 0.5
   swayMultiplier: 0.1
-  maxHealth: 10
   abductionBeam: {fileID: 2061602190}
   glowingSphere: {fileID: 8406721677911639349}
   Abducting: {r: 1, g: 0.13711214, b: 0, a: 1}

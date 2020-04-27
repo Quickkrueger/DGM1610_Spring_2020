@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        SoundController._instance.PlayChillMusic();
     }
 
     // Update is called once per frame
@@ -46,11 +47,13 @@ public class GameManager : MonoBehaviour
         else if (SpawnManager._instance.WaveFinished() && UIManager._instance.WaveTextStatus() == false)
         {
             UIManager._instance.EnableWaveText();
+            SoundController._instance.PlayChillMusic();
         }
         else if(UIManager._instance.WaveTextStatus() == true && Input.GetButtonDown("P1 Submit"))
         {
             UIManager._instance.DisableWaveText();
             SpawnManager._instance.StartWave();
+            SoundController._instance.PlayIntensemusic();
         }
     }
 

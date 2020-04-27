@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private int money = 10;
     private int thisPlayerNum;
     private bool grounded = true;
+    private bool canFire = true;
     private bool usingMouse;
     private Rigidbody rb;
 
@@ -61,12 +62,14 @@ public class PlayerController : MonoBehaviour
                 newItem.transform.parent = item.transform;
                 newItem.transform.position = item.transform.position;
                 newItem.transform.localRotation = currentItem.model.transform.rotation;
+
+                GetComponent<AudioSource>().clip = currentItem.gunSound;
             }
 
             LookForTarget();
         }
 
-        if (Input.GetButtonDown("P" + thisPlayerNum + " Fire1") && currentItem != null)
+        if (Input.GetButton("P" + thisPlayerNum + " Fire1") && currentItem != null && canFire)
         {
             Fire();
         }
@@ -148,11 +151,14 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
+        canFire = false;
+        GetComponent<AudioSource>().Play();
         for(int i = 0; i < currentItem.numProjectile; i++)
         {
             GameObject currentBullet = Instantiate(bulletPrefab, item.transform.position + item.transform.forward, item.transform.rotation);
             currentBullet.GetComponent<BulletController>().InitializeBullet(currentItem.hasSpread, currentItem.spreadRange, currentItem.projectileSpeed);
         }
+        StartCoroutine(Cooldown());
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -212,5 +218,17 @@ public class PlayerController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(currentItem.cooldownTime);
+        canFire = true;
+    }
+
+    public void SwapWeapon(ItemScriptableObject weapon)
+    {
+        Destroy(item.transform.GetChild(0).gameObject);
+        currentItem = weapon;
     }
 }

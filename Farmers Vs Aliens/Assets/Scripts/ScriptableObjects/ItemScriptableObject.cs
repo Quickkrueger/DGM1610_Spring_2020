@@ -8,6 +8,7 @@ public class ItemScriptableObject : ScriptableObject
     public int idNum;
     public string uiName;
     public GameObject model;
+    public AudioClip gunSound;
     public float cooldownTime;
     public int numProjectile;
     public float projectileSpeed;

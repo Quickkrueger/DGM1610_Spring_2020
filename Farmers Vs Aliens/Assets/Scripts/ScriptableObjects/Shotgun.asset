@@ -15,7 +15,8 @@ MonoBehaviour:
   idNum: 0
   uiName: Shotgun
   model: {fileID: 202652475016816276, guid: 1f412b93300d5104787d02f8d4ce080f, type: 3}
-  cooldownTime: 3
+  gunSound: {fileID: 8300000, guid: f038d2036319a8d4c828b10ca59f5a8f, type: 3}
+  cooldownTime: 1
   numProjectile: 8
   projectileSpeed: 20
   hasSpread: 1
