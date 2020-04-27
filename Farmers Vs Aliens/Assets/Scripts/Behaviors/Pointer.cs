@@ -11,9 +11,10 @@ public class Pointer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target != null && target.GetComponent<UfoController>().LockedOnTarget(0))
+        if (target != null && target.GetComponent<UfoController>().LockedOnTarget())
         {
-            transform.rotation = Quaternion.LookRotation(transform.position - target.transform.position);
+            transform.LookAt(target.transform);
+            //transform.rotation = Quaternion.LookRotation(transform.position - target.transform.position);
         }
         else if (initialized)
         {

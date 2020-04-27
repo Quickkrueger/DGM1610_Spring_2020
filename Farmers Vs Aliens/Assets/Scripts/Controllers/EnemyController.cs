@@ -9,10 +9,14 @@ public class EnemyController : MonoBehaviour
     public GameObject explosionPrefab;
 
     public int killValue;
+
+
+    public int maxHealth = 10;
+    protected int health;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -31,5 +35,14 @@ public class EnemyController : MonoBehaviour
             }
         }
         Destroy(gameObject);
+    }
+
+    public virtual void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health == 0)
+        {
+            Explode();
+        }
     }
 }

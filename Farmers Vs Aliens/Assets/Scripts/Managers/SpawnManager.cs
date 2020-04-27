@@ -5,13 +5,18 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyTypes;
-    private int numCows;
-    private GameObject[] cows;
     public int maxEnemies;
-    private int numEnemies = 0;
     public Vector3 spawnBoundaryBottomLeft;
     public Vector3 spawnBoundaryTopRight;
+    public int spawnWaves;
+    public int enemiesPerWave;
     public static SpawnManager _instance;
+    private int currentWave = 0;
+    private int numCows;
+    private GameObject[] cows;
+    private int numEnemies = 0;
+    private int waveCount = 0;
+    private bool active = false;
 
     private void Awake()
     {
@@ -35,15 +40,9 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (numEnemies < maxEnemies)
+        if (active)
         {
-            numEnemies++;
-            int randomEnemy = Random.Range(0, enemyTypes.Length);
-            Vector3 trajectory = new Vector3(Random.Range(spawnBoundaryBottomLeft.x, spawnBoundaryTopRight.x), 0, Random.Range(spawnBoundaryBottomLeft.z, spawnBoundaryTopRight.z));
-            trajectory.Normalize();
-            trajectory = trajectory * 40;
-            Instantiate(enemyTypes[randomEnemy], new Vector3(trajectory.x, enemyTypes[randomEnemy].transform.position.y, trajectory.z), Quaternion.identity);
+            SpawnWave();
         }
     }
 
@@ -95,5 +94,52 @@ public class SpawnManager : MonoBehaviour
     public void EnemyDestroyed()
     {
         numEnemies--;
+    }
+
+    private void SpawnWave()
+    {
+        if (numEnemies < maxEnemies && waveCount < enemiesPerWave)
+        {
+            numEnemies++;
+            waveCount++;
+            int randomEnemy = Random.Range(0, enemyTypes.Length);
+            Vector3 trajectory = new Vector3(Random.Range(spawnBoundaryBottomLeft.x, spawnBoundaryTopRight.x), 0, Random.Range(spawnBoundaryBottomLeft.z, spawnBoundaryTopRight.z));
+            trajectory.Normalize();
+            trajectory = trajectory * 40;
+            Instantiate(enemyTypes[randomEnemy], new Vector3(trajectory.x, enemyTypes[randomEnemy].transform.position.y, trajectory.z), Quaternion.identity);
+        }
+        else if(waveCount >= enemiesPerWave)
+        {
+            active = false;
+            currentWave++;
+            maxEnemies++;
+            enemiesPerWave += currentWave * 2;
+        }
+    }
+
+    public void StartWave()
+    {
+        waveCount = 0;
+        numEnemies = 0;
+        active = true;
+    }
+
+    public bool WaveFinished()
+    {
+        if(!active && numEnemies <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool NoMoreWaves()
+    {
+        if(WaveFinished() && currentWave >= spawnWaves)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

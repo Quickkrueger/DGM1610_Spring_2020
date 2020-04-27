@@ -8,8 +8,6 @@ public class UfoController : EnemyController
     public float speed;
     public float abductionSpeed;
     public float swayMultiplier;
-    public int maxHealth = 10;
-    private int health;
     public GameObject abductionBeam;
     public GameObject glowingSphere;
     public Color Abducting;
@@ -26,9 +24,9 @@ public class UfoController : EnemyController
 
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        health = maxHealth;
+        base.Start();
     }
 
     private void FixedUpdate()
@@ -37,7 +35,7 @@ public class UfoController : EnemyController
         {
             if (target != null && target.tag == "Cow")
             {
-                if (!LockedOnTarget(marginOfError))
+                if (!LockedOnTarget())
                 {
                     MoveTowardTarget();
                 }
@@ -91,6 +89,16 @@ public class UfoController : EnemyController
     {
         if(transform.position.x < target.transform.position.x + distanceToLock && transform.position.x >= target.transform.position.x - distanceToLock &&
             transform.position.z < target.transform.position.z + distanceToLock && transform.position.z >= target.transform.position.z - distanceToLock)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool LockedOnTarget()
+    {
+        if (target != null && transform.position.x < target.transform.position.x + marginOfError && transform.position.x >= target.transform.position.x - marginOfError &&
+            transform.position.z < target.transform.position.z + marginOfError && transform.position.z >= target.transform.position.z - marginOfError)
         {
             return true;
         }
@@ -180,15 +188,6 @@ public class UfoController : EnemyController
         base.Explode();
     }
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if(health == 0)
-        {
-            Explode();
-        }
-    }
-
     private void FireWeapon()
     {
         canAttack = false;
@@ -203,4 +202,8 @@ public class UfoController : EnemyController
         canAttack = true;
     }
 
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+    }
 }

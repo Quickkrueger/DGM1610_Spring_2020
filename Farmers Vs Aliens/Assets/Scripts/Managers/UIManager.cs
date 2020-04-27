@@ -11,6 +11,12 @@ public class UIManager : MonoBehaviour
     public Slider healthBar;
 
     public Text numMoney;
+
+    public Text nextWave;
+
+    public GameObject victoryScreen;
+    public GameObject gameoverScreen;
+    public Text[] gameoverText;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -24,12 +30,6 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void UpdateCowCounter()
@@ -54,4 +54,29 @@ public class UIManager : MonoBehaviour
         numMoney.text = money.ToString();
     }
 
+    public void DisableWaveText()
+    {
+        nextWave.enabled = false;
+    }
+
+    public void EnableWaveText()
+    {
+        nextWave.enabled = true;
+    }
+
+    public bool WaveTextStatus()
+    {
+        return nextWave.enabled;
+    }
+
+    public void EnableGameOverScreen(int type)
+    {
+        gameoverScreen.SetActive(true);
+        gameoverText[type].enabled = true;
+    }
+
+    public void EnableVictoryScreen()
+    {
+        victoryScreen.SetActive(true);
+    }
 }
