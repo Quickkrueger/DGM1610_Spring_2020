@@ -53,12 +53,14 @@ public class GameManager : MonoBehaviour
         {
             UIManager._instance.EnableWaveText();
             SoundController._instance.PlayChillMusic();
+            AnimationManager._instance.RoundEnd();
         }
         else if(UIManager._instance.WaveTextStatus() == true && Input.GetButtonDown("P1 Submit"))
         {
             UIManager._instance.DisableWaveText();
             SpawnManager._instance.StartWave();
             SoundController._instance.PlayIntensemusic();
+            AnimationManager._instance.RoundStart();
         }
     }
 
