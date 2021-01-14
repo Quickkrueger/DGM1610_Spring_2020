@@ -102,7 +102,7 @@ public class SpawnManager : MonoBehaviour
         {
             numEnemies++;
             waveCount++;
-            int randomEnemy = Random.Range(0, enemyTypes.Length);
+            int randomEnemy = Random.Range(0, Mathf.Clamp(currentWave + 1, 0, enemyTypes.Length));
             Vector3 trajectory = new Vector3(Random.Range(spawnBoundaryBottomLeft.x, spawnBoundaryTopRight.x), 0, Random.Range(spawnBoundaryBottomLeft.z, spawnBoundaryTopRight.z));
             trajectory.Normalize();
             trajectory = trajectory * 40;

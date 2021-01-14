@@ -102,27 +102,75 @@ public class PlayerController : MonoBehaviour
             usingMouse = false;
         }
 
-        if (usingMouse) {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = mousePos.y;
-            mousePos.y = transform.position.y;
-            //mousePos.y = 0;
-
-            Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
-            objectPos.z = objectPos.y;
-            objectPos.y = transform.position.y;
-            transform.rotation = Quaternion.LookRotation(mousePos - objectPos);
-            //transform.LookAt(mousePos - objectPos);
-        }
-        else if(!usingMouse && (Mathf.Abs(Input.GetAxis("P" + thisPlayerNum + " Joystick X")) >= 0.05f || Mathf.Abs(Input.GetAxis("P" + thisPlayerNum + " Joystick Y")) >= 0.05f))
-        {
-            Vector3 joystickPos = new Vector3(Input.GetAxisRaw("P" + thisPlayerNum + " Joystick X"), 0f, Input.GetAxisRaw("P" + thisPlayerNum + " Joystick Y"));
-
-
-
-            transform.LookAt(joystickPos + transform.position);
-        }
+        FindAndLookatTarget();
         
+    }
+
+    private void FindAndLookatTarget()
+    {
+        if (usingMouse)
+        {
+            FindTargetWithMouse();
+        }
+        else if (!usingMouse && (Mathf.Abs(Input.GetAxis("P" + thisPlayerNum + " Joystick X")) >= 0.05f || Mathf.Abs(Input.GetAxis("P" + thisPlayerNum + " Joystick Y")) >= 0.05f))
+        {
+            
+        }
+
+    }
+
+    private void FindTargetWithMouse()
+    {
+        Ray ray;
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject rayhit = hit.collider.gameObject;
+            if (rayhit.tag.Equals("Enemy"))
+            {
+                PointWeapon(hit.collider.gameObject.transform);
+
+                Vector3 targetPos = rayhit.transform.position;
+                targetPos.y = transform.position.y;
+                //mousePos.y = 0;
+
+                
+                transform.rotation = Quaternion.LookRotation(targetPos - transform.position);
+                //transform.LookAt(mousePos - objectPos);
+
+            }
+            else
+            {
+                item.transform.rotation = gameObject.transform.rotation;
+
+                Vector3 mousePos = Input.mousePosition;
+                mousePos.z = mousePos.y;
+                mousePos.y = transform.position.y;
+                //mousePos.y = 0;
+
+                Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
+                objectPos.z = objectPos.y;
+                objectPos.y = transform.position.y;
+                transform.rotation = Quaternion.LookRotation(mousePos - objectPos);
+                //transform.LookAt(mousePos - objectPos);
+            }
+        }
+    }
+
+    private void FindTargetWithController()
+    {
+        Vector3 joystickPos = new Vector3(Input.GetAxisRaw("P" + thisPlayerNum + " Joystick X"), 0f, Input.GetAxisRaw("P" + thisPlayerNum + " Joystick Y"));
+        transform.LookAt(joystickPos + transform.position);
+
+        LookForClosestValidTarget();
+    }
+
+    private void LookForClosestValidTarget()
+    {
+        Vector3 lookAngle = transform.rotation.eulerAngles;
+
+
     }
 
     private void LookForTarget()
