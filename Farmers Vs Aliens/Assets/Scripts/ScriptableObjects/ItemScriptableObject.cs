@@ -15,5 +15,6 @@ public class ItemScriptableObject : ScriptableObject
     public bool hasSpread;
     [Range(0f, 1f)]
     public float spreadRange;
+    public int price;
 
 }

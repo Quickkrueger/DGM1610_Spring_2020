@@ -21,3 +21,4 @@ MonoBehaviour:
   projectileSpeed: 20
   hasSpread: 1
   spreadRange: 0.174
+  price: 15
