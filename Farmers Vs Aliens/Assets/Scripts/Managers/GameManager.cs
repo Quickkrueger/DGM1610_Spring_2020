@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.Escape)){
-            Application.Quit();
+                UIManager._instance.TogglePauseScreen();
         }
 
         if (SpawnManager._instance.NoMoreCows())

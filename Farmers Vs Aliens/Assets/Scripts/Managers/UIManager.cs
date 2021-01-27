@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -16,6 +17,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject victoryScreen;
     public GameObject gameoverScreen;
+    public GameObject menuButtons;
+    public GameObject pauseScreen;
     public Text[] gameoverText;
     // Start is called before the first frame update
     private void Awake()
@@ -73,10 +76,36 @@ public class UIManager : MonoBehaviour
     {
         gameoverScreen.SetActive(true);
         gameoverText[type].enabled = true;
+        menuButtons.SetActive(true);
     }
 
     public void EnableVictoryScreen()
     {
         victoryScreen.SetActive(true);
+        menuButtons.SetActive(true);
+    }
+
+    public void TogglePauseScreen()
+    {
+        if (!gameoverScreen.activeSelf && !victoryScreen.activeSelf)
+        {
+            pauseScreen.SetActive(!pauseScreen.activeSelf);
+            menuButtons.SetActive(!menuButtons.activeSelf);
+        }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void QuitToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitAll()
+    {
+        Application.Quit();
     }
 }
