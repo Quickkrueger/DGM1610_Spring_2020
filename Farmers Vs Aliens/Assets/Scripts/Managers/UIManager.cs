@@ -91,16 +91,21 @@ public class UIManager : MonoBehaviour
         {
             pauseScreen.SetActive(!pauseScreen.activeSelf);
             menuButtons.SetActive(!menuButtons.activeSelf);
+            Time.timeScale = Time.timeScale == 1f ? 0f : 1f;
         }
     }
 
     public void Restart()
     {
+        PlayerController.ResetPlayerCount();
+        Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
 
     public void QuitToMenu()
     {
+        PlayerController.ResetPlayerCount();
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 

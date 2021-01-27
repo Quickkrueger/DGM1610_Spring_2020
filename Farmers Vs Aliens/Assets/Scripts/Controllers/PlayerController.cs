@@ -279,4 +279,9 @@ public class PlayerController : MonoBehaviour
         Destroy(item.transform.GetChild(0).gameObject);
         currentItem = weapon;
     }
+
+    public static void ResetPlayerCount()
+    {
+        totalPlayerNum = 0;
+    }
 }
