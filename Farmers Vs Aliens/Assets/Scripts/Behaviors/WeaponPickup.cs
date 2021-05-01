@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class WeaponPickup : PickUp
 {
-    public ItemScriptableObject weaponData;
-
     protected override void PickUpEffect()
     {
-        GameManager._instance.GetPlayer().GetComponent<PlayerController>().SwapWeapon(weaponData);
-        base.PickUpEffect();
+        if (((WeaponScriptableObject)itemData).projectileSpeed != 0)
+        {
+            GameManager._instance.GetPlayer().GetComponent<PlayerController>().SwapWeapon((WeaponScriptableObject)itemData);
+            base.PickUpEffect();
+        }
     }
 }

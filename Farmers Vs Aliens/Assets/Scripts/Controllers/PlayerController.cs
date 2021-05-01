@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public Color[] hatColors;
     public GameObject item;
     public GameObject bulletPrefab;
-    public ItemScriptableObject currentItem;
+    public WeaponScriptableObject currentWeapon;
     public int maxHealth;
 
     private int currentHealth;
@@ -54,22 +54,22 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        if (currentItem != null)
+        if (currentWeapon != null)
         {
             if (item.transform.childCount <= 0)
             {
-                GameObject newItem = Instantiate(currentItem.model);
+                GameObject newItem = Instantiate(currentWeapon.model);
                 newItem.transform.parent = item.transform;
                 newItem.transform.position = item.transform.position;
-                newItem.transform.localRotation = currentItem.model.transform.rotation;
+                newItem.transform.localRotation = currentWeapon.model.transform.rotation;
 
-                GetComponent<AudioSource>().clip = currentItem.gunSound;
+                GetComponent<AudioSource>().clip = currentWeapon.gunSound;
             }
 
             LookForTarget();
         }
 
-        if (Input.GetButton("P" + thisPlayerNum + " Fire1") && currentItem != null && canFire)
+        if (Input.GetButton("P" + thisPlayerNum + " Fire1") && currentWeapon != null && canFire)
         {
             Fire();
         }
@@ -201,10 +201,10 @@ public class PlayerController : MonoBehaviour
     {
         canFire = false;
         GetComponent<AudioSource>().Play();
-        for(int i = 0; i < currentItem.numProjectile; i++)
+        for(int i = 0; i < currentWeapon.numProjectile; i++)
         {
             GameObject currentBullet = Instantiate(bulletPrefab, item.transform.position + item.transform.forward, item.transform.rotation);
-            currentBullet.GetComponent<BulletController>().InitializeBullet(currentItem.hasSpread, currentItem.spreadRange, currentItem.projectileSpeed);
+            currentBullet.GetComponent<BulletController>().InitializeBullet(currentWeapon.hasSpread, currentWeapon.spreadRange, currentWeapon.projectileSpeed);
         }
         StartCoroutine(Cooldown());
     }
@@ -270,14 +270,14 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(currentItem.cooldownTime);
+        yield return new WaitForSeconds(currentWeapon.cooldownTime);
         canFire = true;
     }
 
-    public void SwapWeapon(ItemScriptableObject weapon)
+    public void SwapWeapon(WeaponScriptableObject weapon)
     {
         Destroy(item.transform.GetChild(0).gameObject);
-        currentItem = weapon;
+        currentWeapon = weapon;
     }
 
     public static void ResetPlayerCount()

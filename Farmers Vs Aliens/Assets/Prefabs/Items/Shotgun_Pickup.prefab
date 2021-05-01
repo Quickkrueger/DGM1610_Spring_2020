@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591866b767e7ea945a7c815d59b21409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: e55e1ed243158c948bbf95409bf14c12, type: 2}
+  isShopItem: 0
+  weaponData: {fileID: 11400000, guid: 11288498855f43741b942ecc067c44d3, type: 2}
 --- !u!1 &8906371589136018222
 GameObject:
   m_ObjectHideFlags: 0

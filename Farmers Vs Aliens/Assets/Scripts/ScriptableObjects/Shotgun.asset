@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301dfdc46090b104595ea6d596c2a347, type: 3}
+  m_Script: {fileID: 11500000, guid: f6da1ea11261f0f4e92ca874ab1b1955, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   idNum: 0
   uiName: Shotgun
   model: {fileID: 202652475016816276, guid: 1f412b93300d5104787d02f8d4ce080f, type: 3}
-  gunSound: {fileID: 8300000, guid: f038d2036319a8d4c828b10ca59f5a8f, type: 3}
-  cooldownTime: 1
-  numProjectile: 8
-  projectileSpeed: 20
-  hasSpread: 1
-  spreadRange: 0.174
   price: 15
+  gunSound: {fileID: 0}
+  cooldownTime: 1
+  numProjectile: 10
+  projectileSpeed: 30
+  hasSpread: 1
+  spreadRange: 0.079

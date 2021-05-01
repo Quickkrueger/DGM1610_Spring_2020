@@ -61,6 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d4a0aa868a3094a85c83b3016104d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShopItem: 0
+  itemData: {fileID: 11400000, guid: 8ea57b20da19d0042a5cd968eda772e1, type: 2}
   health: 5
 --- !u!1 &5576667601815668401
 GameObject:

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    public bool isShopItem;
+    public ItemScriptableObject itemData;
     // Start is called before the first frame update
     void Start()
     {

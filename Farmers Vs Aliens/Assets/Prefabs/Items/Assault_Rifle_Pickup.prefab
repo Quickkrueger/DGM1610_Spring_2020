@@ -250,4 +250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591866b767e7ea945a7c815d59b21409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: b8c602925a31b43419d0bb44fb901143, type: 2}
+  isShopItem: 0
+  itemData: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 10fe6924c8712cc49ba26bd81b093093, type: 2}
