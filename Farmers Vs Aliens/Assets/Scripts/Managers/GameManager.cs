@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager _instance;
     private GameObject player;
+    private GameObject shopkeeper;
     public GameObject pointerPrefab;
     // Start is called before the first frame update
     void Awake()
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        shopkeeper = GameObject.FindGameObjectWithTag("Shopkeeper");
         SoundController._instance.PlayChillMusic();
     }
 
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour
             UIManager._instance.EnableWaveText();
             SoundController._instance.PlayChillMusic();
             AnimationManager._instance.RoundEnd();
+            shopkeeper.GetComponent<Merchant>().SetupShop();
+
         }
         else if(UIManager._instance.WaveTextStatus() == true && Input.GetButtonDown("P1 Submit"))
         {

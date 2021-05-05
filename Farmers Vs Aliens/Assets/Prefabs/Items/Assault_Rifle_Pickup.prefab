@@ -251,5 +251,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isShopItem: 0
-  itemData: {fileID: 0}
-  weaponData: {fileID: 11400000, guid: 10fe6924c8712cc49ba26bd81b093093, type: 2}
+  itemData: {fileID: 11400000, guid: 10fe6924c8712cc49ba26bd81b093093, type: 2}
