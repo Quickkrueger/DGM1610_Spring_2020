@@ -6,9 +6,17 @@ public class HealthDrop : PickUp
 {
     public int health;
     // Start is called before the first frame update
-    protected override void PickUpEffect()
+    protected override void PickUpEffect(bool purchaseFulfilled)
     {
-        GameManager._instance.GetPlayer().GetComponent<PlayerController>().GainHealth(health);
-        base.PickUpEffect();
+        if (this.isShopItem && GameManager._instance.GetPlayer().GetComponent<PlayerController>().LoseMoney(itemData.price))
+        {
+            GameManager._instance.GetPlayer().GetComponent<PlayerController>().GainHealth(health);
+            base.PickUpEffect(true);
+        }
+        else if (!isShopItem)
+        {
+            GameManager._instance.GetPlayer().GetComponent<PlayerController>().GainHealth(health);
+            base.PickUpEffect(false);
+        }
     }
 }

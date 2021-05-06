@@ -32,7 +32,7 @@ public class PickUp : MonoBehaviour
 
         if(other.tag == "Player")
         {
-            PickUpEffect();
+            PickUpEffect(false);
         }
     }
 
@@ -40,12 +40,19 @@ public class PickUp : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            PickUpEffect();
+            PickUpEffect(false);
         }
     }
 
-    protected virtual void PickUpEffect()
+    protected virtual void PickUpEffect(bool purchaseFulfilled)
     {
-        Destroy(gameObject);
+        if (isShopItem && (purchaseFulfilled || GameManager._instance.GetPlayer().GetComponent<PlayerController>().LoseMoney(itemData.price)))
+        {
+            Destroy(gameObject);
+        }
+        else if(!isShopItem)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -38,6 +38,7 @@ public class Merchant : MonoBehaviour
                 newItem.GetComponent<PickUp>().isShopItem = true;
                 newItem.transform.parent = slotTransform;
                 newItem.transform.position = slotTransform.position;
+                newItem.GetComponent<Rigidbody>().isKinematic = true;
             }
         }
     }
@@ -55,6 +56,7 @@ public class Merchant : MonoBehaviour
                 newItem.GetComponent<PickUp>().isShopItem = true;
                 newItem.transform.parent = slotTransform;
                 newItem.transform.position = slotTransform.position;
+                newItem.GetComponent<Rigidbody>().isKinematic = true;
 
                 if (currentItemIndex < shopItems.Length)
                 {

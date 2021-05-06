@@ -49,10 +49,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("P" + thisPlayerNum + " Jump") && grounded)
-        {
-            Jump();
-        }
+        //if (Input.GetButtonDown("P" + thisPlayerNum + " Jump") && grounded)
+        //{
+        //    Jump();
+        //}
 
         if (currentWeapon != null)
         {
@@ -247,9 +247,14 @@ public class PlayerController : MonoBehaviour
         ChangeMoney(money);
     }
 
-    public void LoseMoney(int money)
+    public bool LoseMoney(int money)
     {
-        ChangeMoney(money * -1);
+        if (this.money > money)
+        {
+            ChangeMoney(money * -1);
+            return true;
+        }
+        return false;
     }
 
     private void ChangeMoney(int change)

@@ -34,6 +34,8 @@ public class EnemyController : MonoBehaviour
                 Instantiate(potentialDrops[i], transform.position, transform.rotation);
             }
         }
+        GameManager._instance.GetPlayer().GetComponent<PlayerController>().GainMoney(killValue);
+        SpawnManager._instance.EnemyDestroyed();
         Destroy(gameObject);
     }
 

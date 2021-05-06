@@ -21,6 +21,17 @@ public class LoadZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.transform.position = destination.position;
+
+        Transform parent = other.transform.parent;
+        if (parent != null)
+        {
+            other.transform.parent.position = destination.position;
+        }
+        else
+        {
+            other.transform.position = destination.position;
+        }
     }
+
+
 }

@@ -183,8 +183,6 @@ public class UfoController : EnemyController
             target.GetComponent<NavMeshAgent>().enabled = true;
             target.GetComponent<CowController>().UnClaim();
         }
-        GameManager._instance.GetPlayer().GetComponent<PlayerController>().GainMoney(killValue);
-        SpawnManager._instance.EnemyDestroyed();
         base.Explode();
     }
 
